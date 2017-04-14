@@ -1,0 +1,7 @@
+C:\projects\SimplyCastSync\SimplyCastSync\bin\Debug\SimplyCastSync.dll
+C:\projects\SimplyCastSync\SimplyCastSync\bin\Debug\SimplyCastSync.pdb
+C:\projects\SimplyCastSync\SimplyCastSync\obj\Debug\SimplyCastSync.csprojResolveAssemblyReference.cache
+C:\projects\SimplyCastSync\SimplyCastSync\obj\Debug\SimplyCastSync.dll
+C:\projects\SimplyCastSync\SimplyCastSync\obj\Debug\SimplyCastSync.pdb
+C:\projects\SimplyCastSync\SimplyCastSync\bin\Debug\Newtonsoft.Json.dll
+C:\projects\SimplyCastSync\SimplyCastSync\bin\Debug\Newtonsoft.Json.xml
