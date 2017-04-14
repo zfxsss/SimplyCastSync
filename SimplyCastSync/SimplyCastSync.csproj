@@ -44,19 +44,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigRepository.cs" />
-    <Compile Include="FieldsReader.cs" />
-    <Compile Include="FoxProDataQuery.cs" />
-    <Compile Include="IComparer.cs" />
-    <Compile Include="IConfig.cs" />
-    <Compile Include="IQuery.cs" />
-    <Compile Include="JsonDataComparer.cs" />
-    <Compile Include="MySqlDataQuery.cs" />
+    <Compile Include="Config\ConfigRepository.cs" />
+    <Compile Include="Obselete\FetchRangeField.cs" />
+    <Compile Include="Config\FieldsReader.cs" />
+    <Compile Include="DBAcess\FoxProDataQuery.cs" />
+    <Compile Include="CompareEngine\IComparer.cs" />
+    <Compile Include="Config\IConfig.cs" />
+    <Compile Include="DBAcess\IQuery.cs" />
+    <Compile Include="CompareEngine\JsonDataComparer.cs" />
+    <Compile Include="DBAcess\MySqlDataQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PubLib\Log.cs" />
+    <Compile Include="PubLib\LogEnum.cs" />
+    <Compile Include="PubLib\LogExportAsync.cs" />
+    <Compile Include="PubLib\LogMgr.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Obselete\running_config.json" />
     <None Include="packages.config" />
+    <None Include="Obselete\fetchrangefieldtype_config.json" />
+    <None Include="process_config.json" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

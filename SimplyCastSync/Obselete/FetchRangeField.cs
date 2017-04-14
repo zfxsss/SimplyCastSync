@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace SimplyCastSync
 {
-    using System.Data;
-    public interface IQuery
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum FetchRangeField_Type
     {
-        DataSet GetDataSet();
+        time = 0,
+        id
     }
+
 }

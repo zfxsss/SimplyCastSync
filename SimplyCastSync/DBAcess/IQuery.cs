@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync
+namespace SimplyCastSync.DBAccess
 {
     using System.Data;
-    public class FoxProDataQuery : IQuery
+    public interface IQuery
     {
-        public DataSet GetDataSet()
-        {
-            return null;
-        }
+        DataSet GetDataSet();
     }
 }

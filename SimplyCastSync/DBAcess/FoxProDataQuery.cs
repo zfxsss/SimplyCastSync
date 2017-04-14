@@ -4,19 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync
+namespace SimplyCastSync.DBAccess
 {
     using System.Data;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public class MySqlDataQuery : IQuery
+    public class FoxProDataQuery : IQuery
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public DataSet GetDataSet()
         {
             return null;

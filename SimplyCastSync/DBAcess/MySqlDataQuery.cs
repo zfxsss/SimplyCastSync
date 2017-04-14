@@ -4,19 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync
+namespace SimplyCastSync.DBAccess
 {
-    using System.IO;
-    using Newtonsoft.Json.Linq;
-    
+    using System.Data;
+
     /// <summary>
     /// 
     /// </summary>
-    public class ConfigRepository
+    public class MySqlDataQuery : IQuery
     {
         /// <summary>
         /// 
         /// </summary>
-        public static JObject Content { get; } = JObject.Parse(File.ReadAllText(""));
+        /// <returns></returns>
+        public DataSet GetDataSet()
+        {
+            return null;
+        }
     }
 }
