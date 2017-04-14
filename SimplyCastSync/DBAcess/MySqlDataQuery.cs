@@ -13,6 +13,7 @@ namespace SimplyCastSync.DBAccess
     /// </summary>
     public class MySqlDataQuery : IQuery
     {
+        private DataSet _ds;
         /// <summary>
         /// 
         /// </summary>
@@ -20,6 +21,11 @@ namespace SimplyCastSync.DBAccess
         public DataSet GetDataSet()
         {
             return null;
+        }
+
+        public void CommitDataSet()
+        {
+
         }
     }
 }

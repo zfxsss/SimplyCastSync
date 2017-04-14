@@ -34,6 +34,10 @@ namespace SimplyCastSync.PubLib
                 return _consolelogtask;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static Task FileLogTask
         {
             get

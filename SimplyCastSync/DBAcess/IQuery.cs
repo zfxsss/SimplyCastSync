@@ -9,6 +9,15 @@ namespace SimplyCastSync.DBAccess
     using System.Data;
     public interface IQuery
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         DataSet GetDataSet();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void CommitDataSet();
     }
 }

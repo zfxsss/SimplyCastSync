@@ -71,11 +71,11 @@ namespace SimplyCastSync.PubLib
         /// </summary>
         public static void ExportConsoleLog()
         {
-            try
+            Console.BufferHeight = 2048;
+            ExceptionBody eb;
+            while (true)
             {
-                Console.BufferHeight = 2048;
-                ExceptionBody eb;
-                while (true)
+                try
                 {
                     eb = _consolelog.Take();
                     if (eb.et == ExceptionType.Error)
@@ -102,11 +102,12 @@ namespace SimplyCastSync.PubLib
                         break;
                     }
                 }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine(eb.ts.ToString("yyyy/MM/dd HH:mm:ss.fff") + "---" + System.Enum.GetName(typeof(ExceptionType), eb.et) + ": " + eb.info);
+                }
             }
-            catch (Exception ex)
-            {
-                //Console.WriteLine(eb.ts.ToString("yyyy/MM/dd HH:mm:ss.fff") + "---" + System.Enum.GetName(typeof(ExceptionType), eb.et) + ": " + eb.info);
-            }
+
         }
 
         /// <summary>
@@ -114,10 +115,10 @@ namespace SimplyCastSync.PubLib
         /// </summary>
         public static void ExportFileLog()
         {
-            try
+            ExceptionBody eb;
+            while (true)
             {
-                ExceptionBody eb;
-                while (true)
+                try
                 {
                     eb = _filelog.Take();
 
@@ -126,12 +127,13 @@ namespace SimplyCastSync.PubLib
                         break;
                     }
                 }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine(eb.ts.ToString("yyyy/MM/dd HH:mm:ss.fff") + "---" + System.Enum.GetName(typeof(ExceptionType), eb.et) + ": " + eb.info);
+                }
             }
-            catch (Exception ex)
-            {
-                //Console.WriteLine(eb.ts.ToString("yyyy/MM/dd HH:mm:ss.fff") + "---" + System.Enum.GetName(typeof(ExceptionType), eb.et) + ": " + eb.info);
-            }
+
         }
 
-    }
+    } //end of class
 }
