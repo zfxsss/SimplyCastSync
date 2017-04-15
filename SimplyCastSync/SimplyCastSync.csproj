@@ -45,8 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ConfigRepository.cs" />
+    <Compile Include="DataSource\DataSrcEnum.cs" />
+    <Compile Include="DataSource\DbSrc.cs" />
+    <Compile Include="DataSource\DsProvider.cs" />
+    <Compile Include="DataSource\IDataSrc.cs" />
+    <Compile Include="DataSource\IProvider.cs" />
+    <Compile Include="DataSource\WebApiDs.cs" />
     <Compile Include="Obselete\FetchRangeField.cs" />
-    <Compile Include="Config\FieldsReader.cs" />
+    <Compile Include="Config\ConfigReader.cs" />
     <Compile Include="DBAcess\FoxProDataQuery.cs" />
     <Compile Include="CompareEngine\IComparer.cs" />
     <Compile Include="Config\IConfig.cs" />

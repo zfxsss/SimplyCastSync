@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync.Config
+namespace SimplyCastSync.DataSource
 {
-    public interface IConfig<T>
+    public enum DataSrcType
     {
-        T GetConfiguration(string configname);
+        Foxpro = 0,
+        MySql,
+        WebSvc
     }
 }

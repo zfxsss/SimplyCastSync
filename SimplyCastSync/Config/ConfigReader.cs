@@ -4,31 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static SimplyCastSync.Config.ConfigRepository;
+
 namespace SimplyCastSync.Config
 {
-    using static ConfigRepository;
+
     /// <summary>
     /// 
     /// </summary>
-    class FieldsReader : IConfig<string[]>
+    public class ConfigReader : IConfig<KeyValuePair<string, string>[]>
     {
         /// <summary>
         /// 
         /// </summary>
-        public string[] ConfigInfo
-        {
-            get;
-            private set;
-        }
+        public KeyValuePair<string, string>[] ConfigInfo { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="configname"></param>
         /// <returns></returns>
-        public string[] GetConfiguration(string configname)
+        public KeyValuePair<string, string>[] GetConfiguration(string configname)
         {
-            //Content.
+            //Content;
             ConfigInfo = null;
             return ConfigInfo;
         }
