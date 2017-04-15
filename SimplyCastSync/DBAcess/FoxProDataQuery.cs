@@ -3,28 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace SimplyCastSync.DBAccess
 {
-    using System.Data;
-    public class FoxProDataQuery : IQuery
+
+    public class FoxProDataQuery : IQuery<DataSet>
     {
-        private DataSet _ds;
+        private  DataSet  ds;
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public DataSet GetDataSet()
+        public DataSet GetData()
         {
-            return null;
+            return default(DataSet);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void CommitDataSet()
-        {
-
-        }
     }
 }

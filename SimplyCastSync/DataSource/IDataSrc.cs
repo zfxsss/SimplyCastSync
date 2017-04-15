@@ -12,8 +12,8 @@ namespace SimplyCastSync.DataSource
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataSrc : IConfig<KeyValuePair<string, string>[]>
+    public interface IDataSrc
     {
-        IQuery Ds { get; }
+        DataSrcType DsType { get; }
     }
 }

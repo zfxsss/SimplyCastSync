@@ -3,29 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.Common;
+using MySql.Data.MySqlClient;
+
 
 namespace SimplyCastSync.DBAccess
 {
-    using System.Data;
-
     /// <summary>
     /// 
     /// </summary>
-    public class MySqlDataQuery : IQuery
+    public class MySqlDataQuery : IQuery<DataSet>
     {
-        private DataSet _ds;
+        public MySqlConnection DBConnection { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public DataSet GetDataSet()
+        public DataSet GetData()
         {
-            return null;
+            return default(DataSet);
         }
 
-        public void CommitDataSet()
-        {
-
-        }
     }
 }

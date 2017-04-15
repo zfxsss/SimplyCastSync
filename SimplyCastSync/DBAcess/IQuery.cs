@@ -7,17 +7,13 @@ using System.Threading.Tasks;
 namespace SimplyCastSync.DBAccess
 {
     using System.Data;
-    public interface IQuery
+    public interface IQuery<T>
     {
         /// <summary>
         /// 
-        /// </summary>
+        /// </summary>k
         /// <returns></returns>
-        DataSet GetDataSet();
+        T GetData();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        void CommitDataSet();
     }
 }

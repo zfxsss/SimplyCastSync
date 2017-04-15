@@ -9,3 +9,5 @@ C:\projects\SimplyCastSync\SimplyCastSyncTests\bin\Debug\zh-Hans\Microsoft.Visua
 C:\projects\SimplyCastSync\SimplyCastSyncTests\obj\Debug\SimplyCastSyncTests.csprojResolveAssemblyReference.cache
 C:\projects\SimplyCastSync\SimplyCastSyncTests\obj\Debug\SimplyCastSyncTests.dll
 C:\projects\SimplyCastSync\SimplyCastSyncTests\obj\Debug\SimplyCastSyncTests.pdb
+C:\projects\SimplyCastSync\SimplyCastSyncTests\bin\Debug\MySql.Data.dll
+C:\projects\SimplyCastSync\SimplyCastSyncTests\bin\Debug\MySql.Data.xml

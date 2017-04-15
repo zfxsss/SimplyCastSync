@@ -6,22 +6,24 @@ using System.Threading.Tasks;
 
 using SimplyCastSync.DBAccess;
 using SimplyCastSync.Config;
+using System.Data;
 
 namespace SimplyCastSync.DataSource
 {
-    public class DbSrc : ConfigReader, IDataSrc
+    public class DbSrc : IDataSrc
     {
+        public DataSrcType DsType { get; private set; }
         /// <summary>
         /// 
         /// </summary>
-        public IQuery Ds { get; set; }
+        public IQuery<DataSet> Ds { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DbSrc(string dsname)
+        public DbSrc(IQuery<DataSet> ds)
         {
-            GetConfiguration("");
+            Ds = ds;
         }
 
 

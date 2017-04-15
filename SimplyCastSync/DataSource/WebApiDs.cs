@@ -1,4 +1,5 @@
-﻿using SimplyCastSync.Config;
+﻿using Newtonsoft.Json.Linq;
+using SimplyCastSync.Config;
 using SimplyCastSync.DBAccess;
 using System;
 using System.Collections.Generic;
@@ -8,20 +9,26 @@ using System.Threading.Tasks;
 
 namespace SimplyCastSync.DataSource
 {
-    public class WebApiDs : ConfigReader, IDataSrc
+    public class WebApiDs : IDataSrc
     {
+        public DataSrcType DsType { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public IQuery Ds { get; private set; }
+        public IQuery<JArray> Ds
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="dsname"></param>
-        public WebApiDs(string dsname)
+        public WebApiDs(IQuery<JArray> ds)
         {
-            GetConfiguration("");
+            Ds = ds;
         }
 
 
