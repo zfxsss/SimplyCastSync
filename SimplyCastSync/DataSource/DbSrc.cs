@@ -5,7 +5,7 @@ using System.Data;
 
 namespace SimplyCastSync.DataSource
 {
-    public class FoxproDbSrc : IDataSrc<DataSet>
+    public class DbSrc : IDataSrc<DataSet>
     {
         public IQuery<DataSet> Q { get; private set; }
 
@@ -22,9 +22,11 @@ namespace SimplyCastSync.DataSource
         /// <summary>
         /// 
         /// </summary>
-        public FoxproDbSrc()
+        public DbSrc(IQuery<DataSet> q, ConfigItems<KeyValuePair<string, string>> config)
         {
-            Q = new FoxproDataQuery();
+            //Q = new FoxproDataQuery();
+            Q = q;
+            Config = config;
         }
 
 

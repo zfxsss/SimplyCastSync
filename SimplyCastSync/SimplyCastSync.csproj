@@ -48,11 +48,11 @@
     <Compile Include="Config\ConfigItems.cs" />
     <Compile Include="Config\ConfigRepository.cs" />
     <Compile Include="DataSource\DataSrcEnum.cs" />
-    <Compile Include="DataSource\FoxproDbSrc.cs" />
+    <Compile Include="DataSource\DbSrc.cs" />
     <Compile Include="DataSource\DsProvider.cs" />
     <Compile Include="DataSource\IDataSrc.cs" />
     <Compile Include="DataSource\IProvider.cs" />
-    <Compile Include="DataSource\SimplyCastWebApiDs.cs" />
+    <Compile Include="DataSource\WebApiDs.cs" />
     <Compile Include="DBAcess\SimplyCastWebApiQuery.cs" />
     <Compile Include="Obselete\FetchRangeField.cs" />
     <Compile Include="Config\ConfigReader.cs" />

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SimplyCastSync.DataSource
 {
-    public class SimplyCastWebApiDs : IDataSrc<JArray>
+    public class WebApiDs : IDataSrc<JArray>
     {
         //public HttpClient Ds { get; private set; }
 
@@ -13,14 +13,6 @@ namespace SimplyCastSync.DataSource
 
         public ConfigItems<KeyValuePair<string, string>> Config { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public bool Connect()
-        {
-            return false;
-        }
 
         /// <summary>
         /// 
@@ -34,10 +26,11 @@ namespace SimplyCastSync.DataSource
         /// 
         /// </summary>
         /// <param name="dsname"></param>
-        public SimplyCastWebApiDs()
+        public WebApiDs(IQuery<JArray> q, ConfigItems<KeyValuePair<string, string>> config)
         {
-            //Ds = new HttpClient();
-            Q = new SimplyCastWebApiQuery();
+            //Q = new SimplyCastWebApiQuery();
+            Q = q;
+            Config = config;
         }
 
 

@@ -3,7 +3,6 @@ using static SimplyCastSync.Config.ConfigRepository;
 
 namespace SimplyCastSync.Config
 {
-
     /// <summary>
     /// 
     /// </summary>

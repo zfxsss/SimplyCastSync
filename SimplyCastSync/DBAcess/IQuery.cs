@@ -8,7 +8,7 @@ namespace SimplyCastSync.DBAccess
         /// 
         /// </summary>k
         /// <returns></returns>
-        T GetData();
+        T GetData(string querystr);
         /// <summary>
         /// 
         /// </summary>

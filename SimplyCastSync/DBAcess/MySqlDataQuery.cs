@@ -13,7 +13,7 @@ namespace SimplyCastSync.DBAccess
         /// 
         /// </summary>
         /// <returns></returns>
-        public DataSet GetData()
+        public DataSet GetData(string querystr)
         {
             return default(DataSet);
         }

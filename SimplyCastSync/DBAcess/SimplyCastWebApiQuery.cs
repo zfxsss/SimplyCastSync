@@ -14,7 +14,7 @@ namespace SimplyCastSync.DBAccess
         /// 
         /// </summary>
         /// <returns></returns>
-        public JArray GetData()
+        public JArray GetData(string querystr)
         {
             return default(JArray);
         }
