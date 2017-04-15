@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 
 namespace SimplyCastSync.DBAccess
 {
 
-    public class FoxProDataQuery : IQuery<DataSet>
+    public class FoxproDataQuery : IQuery<DataSet>, IDisposable
     {
-        private  DataSet  ds;
+        public DataSet Ds { get; private set; }
         /// <summary>
         /// 
         /// </summary>
@@ -18,6 +14,24 @@ namespace SimplyCastSync.DBAccess
         public DataSet GetData()
         {
             return default(DataSet);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <returns></returns>
+        public int UpdateData(DataSet ds)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+
         }
 
     }

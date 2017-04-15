@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
-using System.Data.Common;
-using MySql.Data.MySqlClient;
-
 
 namespace SimplyCastSync.DBAccess
 {
     /// <summary>
     /// 
     /// </summary>
-    public class MySqlDataQuery : IQuery<DataSet>
+    public class MysqlDataQuery : IQuery<DataSet>, IDisposable
     {
-        public MySqlConnection DBConnection { get; private set; }
 
         /// <summary>
         /// 
@@ -24,6 +16,24 @@ namespace SimplyCastSync.DBAccess
         public DataSet GetData()
         {
             return default(DataSet);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <returns></returns>
+        public int UpdateData(DataSet ds)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+
         }
 
     }

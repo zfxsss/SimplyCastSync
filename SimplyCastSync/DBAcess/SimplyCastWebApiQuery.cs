@@ -1,19 +1,39 @@
 ﻿using Newtonsoft.Json.Linq;
 using SimplyCastSync.DBAccess;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SimplyCastSync.DBAcess
+namespace SimplyCastSync.DBAccess
 {
-    public class SimplyCastWebApiQuery : IQuery<JArray>
+    public class SimplyCastWebApiQuery : IQuery<JArray>, IDisposable
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public JArray Ds { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public JArray GetData()
         {
             return default(JArray);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <returns></returns>
+        public int UpdateData(JArray ds)
+        {
+            return 0;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+
+        }
+
     }
 }

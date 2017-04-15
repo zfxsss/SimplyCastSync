@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Collections.Generic;
 using static SimplyCastSync.Config.ConfigRepository;
 
 namespace SimplyCastSync.Config
@@ -12,19 +7,19 @@ namespace SimplyCastSync.Config
     /// <summary>
     /// 
     /// </summary>
-    public class ConfigReader : IConfig<KeyValuePair<string, string>[]>
+    public class ConfigReader : IConfigReader<ConfigItems<KeyValuePair<string, string>>>
     {
         /// <summary>
         /// 
         /// </summary>
-        public KeyValuePair<string, string>[] ConfigInfo { get; private set; }
+        public ConfigItems<KeyValuePair<string, string>> ConfigInfo { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="configname"></param>
         /// <returns></returns>
-        public KeyValuePair<string, string>[] GetConfiguration(string configname)
+        public ConfigItems<KeyValuePair<string, string>> GetConfiguration(string configname)
         {
             //Content;
             ConfigInfo = null;

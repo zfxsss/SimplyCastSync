@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SimplyCastSync.DBAccess
 {
     using System.Data;
@@ -14,6 +9,12 @@ namespace SimplyCastSync.DBAccess
         /// </summary>k
         /// <returns></returns>
         T GetData();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <returns></returns>
+        int UpdateData(T ds);
 
     }
 }

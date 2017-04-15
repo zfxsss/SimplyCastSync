@@ -1,19 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SimplyCastSync.Config;
 using SimplyCastSync.DBAccess;
+using SimplyCastSync.Config;
+using System.Collections.Generic;
 
 namespace SimplyCastSync.DataSource
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataSrc
+    public interface IDataSrc<T> : IDisposable
     {
-        DataSrcType DsType { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        IQuery<T> Q { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        ConfigItems<KeyValuePair<string, string>> Config { get; }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SimplyCastSync.DataSource
 {
     /// <summary>
@@ -15,6 +10,6 @@ namespace SimplyCastSync.DataSource
         /// 
         /// </summary>
         /// <returns></returns>
-        IDataSrc GetDs(string dsname);
+        IDataSrc<T> GetDs<T>(string dsname);
     }
 }

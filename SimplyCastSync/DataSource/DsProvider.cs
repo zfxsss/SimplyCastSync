@@ -2,6 +2,7 @@
 using SimplyCastSync.DBAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,11 @@ namespace SimplyCastSync.DataSource
     {
         public static DataSrcProvider DsProvider { get; } = new DataSrcProvider();
 
-        public IDataSrc GetDs(string dsname)
+        public IDataSrc<T> GetDs<T>(string dsname)
         {
             var dsconfig = GetConfiguration(dsname);
 
-            if(1==1)
+            if (1 == 1)
             {
                 //return new DbSrc();
             }
