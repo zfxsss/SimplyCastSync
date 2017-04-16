@@ -7,6 +7,7 @@ namespace SimplyCastSync.DBAccess
     public class FoxproDataQuery : IQuery<DataSet>, IDisposable
     {
         public DataSet Ds { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -30,6 +31,14 @@ namespace SimplyCastSync.DBAccess
         /// 
         /// </summary>
         public void Dispose()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public FoxproDataQuery()
         {
 
         }

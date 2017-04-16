@@ -36,5 +36,13 @@ namespace SimplyCastSync.DBAccess
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public MysqlDataQuery()
+        {
+
+        }
+
     }
 }

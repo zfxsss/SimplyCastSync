@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using SimplyCastSync.DBAccess;
 using System;
+using System.Net.Http;
 
 namespace SimplyCastSync.DBAccess
 {
@@ -10,6 +11,12 @@ namespace SimplyCastSync.DBAccess
         /// 
         /// </summary>
         public JArray Ds { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public HttpClient HC { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -35,5 +42,15 @@ namespace SimplyCastSync.DBAccess
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public SimplyCastWebApiQuery()
+        {
+            HC = new HttpClient();
+            HC.BaseAddress = new Uri("");
+            //HC.DefaultRequestHeaders
+
+        }
     }
 }
