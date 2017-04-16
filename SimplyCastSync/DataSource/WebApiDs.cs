@@ -5,7 +5,10 @@ using System.Collections.Generic;
 
 namespace SimplyCastSync.DataSource
 {
-    public class WebApiDs : IDataSrc<JArray>
+    /// <summary>
+    /// 
+    /// </summary>
+    public class WebApiDs : RdHandler<JArray, JToken>, IDataSrc<JArray>
     {
         /// <summary>
         /// 
@@ -25,33 +28,6 @@ namespace SimplyCastSync.DataSource
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="jt"></param>
-        public void AddRd(JToken jt)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="jt"></param>
-        public void UpdateRd(JToken jt)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="jt"></param>
-        public void RemoveRd(JToken jt)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public void Dispose()
         {
 
@@ -61,13 +37,13 @@ namespace SimplyCastSync.DataSource
         /// 
         /// </summary>
         /// <param name="dsname"></param>
-        public WebApiDs(IQuery<JArray> q, ConfigItems<KeyValuePair<string, string>> config)
+        public WebApiDs(IQuery<JArray> q, ConfigItems<KeyValuePair<string, string>> config) : base(null, null, null)
         {
             //Q = new SimplyCastWebApiQuery();
             Q = q;
             Config = config;
 
-            Ds = Q.GetData("");
+            Ds = q.GetData("");
 
             //Q.UpdateData(Ds);
         }

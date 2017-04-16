@@ -5,7 +5,7 @@ using System.Data;
 
 namespace SimplyCastSync.DataSource
 {
-    public class DbSrc : IDataSrc<DataSet>
+    public class DbSrc : RdHandler<DataSet, DataRow>, IDataSrc<DataSet>
     {
         /// <summary>
         /// 
@@ -25,33 +25,6 @@ namespace SimplyCastSync.DataSource
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dr"></param>
-        public void AddRd(DataRow dr)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dr"></param>
-        public void UpdateRd(DataRow dr)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dr"></param>
-        public void RemoveRd(DataRow dr)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public void Dispose()
         {
             //Ds.Dispose();
@@ -60,7 +33,7 @@ namespace SimplyCastSync.DataSource
         /// <summary>
         /// 
         /// </summary>
-        public DbSrc(IQuery<DataSet> q, ConfigItems<KeyValuePair<string, string>> config)
+        public DbSrc(IQuery<DataSet> q, ConfigItems<KeyValuePair<string, string>> config) : base(null, null, null)
         {
             //Q = new FoxproDataQuery();
             Q = q;
