@@ -4,11 +4,12 @@
     {
       "source": {
         "ds": "firstsrcds",
-        "table": [ "table1_src", "table_view" ], //["select * from person a inner join appointment b on a.id = b.personid", "sql"]
         "uniquefield": "id",
         "keyfields": [ "k1", "k2" ],
         "valuefields": [ "v1", "v2", "v3" ],
-        "rangefield": [ "created", "time", "-30d", "now" ]
+        "querystring": "select * from table_test1"
+        //"table": [ "table_test1", "table_view" ], //["select * from person a inner join appointment b on a.id = b.personid", "sql"]
+        //"rangefield": [ "created", "time", "-30d", "now" ]
       },
       "destination": {
         "ds": "firstdstds",
@@ -16,7 +17,8 @@
         "uniquefield": "id",
         "keyfields": [ "k1d", "k2d" ],
         "valuefields": [ "v1d", "v2d", "v3d" ],
-        "rangefield": [ "created", "time", "-30d", "now" ]
+        "querystring": "?q=api/call&request=contactmanager/lists"
+        //"rangefield": [ "created", "time", "-30d", "now" ]
       }
     }
   ],
@@ -34,6 +36,7 @@
       "error": []
     }
   },
+  /*
   "fetchrangefieldtype": {
     "time": {
       "accept": [ "y", "M", "d", "h", "m" ],
@@ -42,7 +45,7 @@
     "id": {
       "prefix": [ "%d", "n,p" ]
     }
-  },
+  },*/
   "datasource": [
     {
       "name": "firstsrcds",
@@ -52,9 +55,9 @@
     },
     {
       "name": "firstdstds",
-      "queryname": "Simplycast",
+      "queryname": "SimplyCastWebApi",
       "dstype": "JObject",
-      "connstr": ""
+      "connstr": "BaseAddress=https://app.simplycast.com;PublicKey=a8fe3712113090e5666a6b374452dc930d710553;SecretKey=7dc2feccd12ec26534a405c611f0134481c3394e;"
     }
   ]
 }
