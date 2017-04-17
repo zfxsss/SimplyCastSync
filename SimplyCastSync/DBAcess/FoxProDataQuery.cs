@@ -19,10 +19,19 @@ namespace SimplyCastSync.DBAccess
             using (OleDbCommand comm = new OleDbCommand(querystr, conn))
             using (OleDbDataAdapter adapter = new OleDbDataAdapter(comm))
             {
-                adapter.Fill(ds);
+                try
+                {
+                    adapter.Fill(ds);
+                    return ds;
+                }
+                catch (Exception ex)
+                {
+                    // add log
+
+                    return null;
+                }
             }
 
-            return ds;
         }
 
         /// <summary>
