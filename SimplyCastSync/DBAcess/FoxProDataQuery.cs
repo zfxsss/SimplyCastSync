@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.OleDb;
 
 namespace SimplyCastSync.DBAccess
 {
@@ -13,8 +14,15 @@ namespace SimplyCastSync.DBAccess
         /// <returns></returns>
         public DataSet GetData(string querystr)
         {
-            //Ds = default(DataSet);
-            return null;
+            DataSet ds = new DataSet();
+            using (OleDbConnection conn = new OleDbConnection(_connstr))
+            using (OleDbCommand comm = new OleDbCommand(querystr, conn))
+            using (OleDbDataAdapter adapter = new OleDbDataAdapter(comm))
+            {
+                adapter.Fill(ds);
+            }
+
+            return ds;
         }
 
         /// <summary>

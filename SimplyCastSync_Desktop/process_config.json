@@ -48,7 +48,7 @@
       "name": "firstsrcds",
       "queryname": "FoxproData",
       "dstype": "DataSet",
-      "connstr": ""
+      "connstr": "Provider=VFPOLEDB.1;Data Source=C:\\Users\\zhefeng\\Documents\\Foxpro;"
     },
     {
       "name": "firstdstds",
