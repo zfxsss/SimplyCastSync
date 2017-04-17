@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync.DataSource
+namespace SimplyCastSync.CompareEngine
 {
     /// <summary>
     /// record event handler
@@ -16,7 +16,7 @@ namespace SimplyCastSync.DataSource
         /// <summary>
         /// 
         /// </summary>
-        public Dictionary<string, Action<T, U>> Handlers { get; private set; } 
+        public Dictionary<string, Action<T, U>> Handlers { get; private set; }
 
         public RdHandler(Action<T, U> h1, Action<T, U> h2, Action<T, U> h3)
         {

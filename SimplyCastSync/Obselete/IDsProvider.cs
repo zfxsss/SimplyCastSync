@@ -4,7 +4,7 @@ namespace SimplyCastSync.DataSource
     /// <summary>
     /// 
     /// </summary>
-    public interface IProvider
+    public interface IDsProvider
     {
         /// <summary>
         /// 

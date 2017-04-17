@@ -8,14 +8,14 @@ namespace SimplyCastSync.DBAccess
     /// </summary>
     public class MysqlDataQuery : IQuery<DataSet>, IDisposable
     {
-
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public DataSet GetData(string querystr)
         {
-            return default(DataSet);
+            //Ds =  default(DataSet);
+            return null;
         }
 
         /// <summary>

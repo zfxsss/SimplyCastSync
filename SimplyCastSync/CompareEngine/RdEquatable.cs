@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync.DataSource
+namespace SimplyCastSync.CompareEngine
 {
     /// <summary>
     /// 

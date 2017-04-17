@@ -3,18 +3,16 @@ using System.Data;
 
 namespace SimplyCastSync.DBAccess
 {
-
     public class FoxproDataQuery : IQuery<DataSet>, IDisposable
     {
-        public DataSet Ds { get; private set; }
-
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public DataSet GetData(string querystr)
         {
-            return default(DataSet);
+            //Ds = default(DataSet);
+            return null;
         }
 
         /// <summary>

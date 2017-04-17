@@ -5,13 +5,8 @@ using System.Net.Http;
 
 namespace SimplyCastSync.DBAccess
 {
-    public class SimplyCastWebApiQuery : IQuery<JArray>, IDisposable
+    public class SimplyCastWebApiQuery : IQuery<JObject>, IDisposable
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public JArray Ds { get; private set; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -21,16 +16,17 @@ namespace SimplyCastSync.DBAccess
         /// 
         /// </summary>
         /// <returns></returns>
-        public JArray GetData(string querystr)
+        public JObject GetData(string querystr)
         {
-            return default(JArray);
+            //Ds = default(JArray);
+            return null;
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="ds"></param>
         /// <returns></returns>
-        public int UpdateData(JArray ds)
+        public int UpdateData(JObject ds)
         {
             return 0;
         }

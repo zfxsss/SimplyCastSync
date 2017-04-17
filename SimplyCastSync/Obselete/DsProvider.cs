@@ -9,10 +9,19 @@ using System.Threading.Tasks;
 
 namespace SimplyCastSync.DataSource
 {
-    public class DataSrcProvider : ConfigReader, IProvider
+    public class DataSrcProvider : ConfigReader, IDsProvider
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static DataSrcProvider DsProvider { get; } = new DataSrcProvider();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dsname"></param>
+        /// <returns></returns>
         public IDataSrc<T> GetDs<T>(string dsname)
         {
             var dsconfig = GetConfiguration(dsname);
@@ -23,6 +32,14 @@ namespace SimplyCastSync.DataSource
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private DataSrcProvider()
+        {
+
         }
     }
 }

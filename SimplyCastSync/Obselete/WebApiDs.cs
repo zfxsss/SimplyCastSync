@@ -43,7 +43,7 @@ namespace SimplyCastSync.DataSource
             Q = q;
             Config = config;
 
-            Ds = q.GetData("");
+            //Ds = q.GetData("");
 
             //Q.UpdateData(Ds);
         }
