@@ -14,7 +14,7 @@ namespace SimplyCastSync.DBAccess.Tests
         [TestMethod()]
         public void GetDataTest()
         {
-            var client = new SimplyCastWebApiQuery("BaseAddress=https://app.simplycast.com;PublicKey=a8fe3712113090e5666a6b374452dc930d710553;SecretKey=7dc2feccd12ec26534a405c611f0134481c3394e;");
+            var client = new SimplyCastWebApiQuery("BaseAddress=https://app.simplycast.cm;PublicKey=a8fe3712113090e5666a6b374452dc930d710553;SecretKey=7dc2feccd12ec26534a405c611f0134481c3394e;");
             var result = client.GetData("?q=api/call&request=contactmanager/lists");
             Assert.Fail();
         }

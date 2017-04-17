@@ -25,6 +25,7 @@
   "running": {
     "interval": 300,
     "logdir": "logs",
+    "loginput": "Console_File",
     "consolelog": {
       "message": [],
       "warning": [],

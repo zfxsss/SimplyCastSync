@@ -56,12 +56,14 @@ namespace SimplyCastSync.DBAccess
             }
 
         }
+       
         /// <summary>
         /// 
         /// </summary>
         /// <param name="ds"></param>
+        /// <param name="extras"></param>
         /// <returns></returns>
-        public int UpdateData(JObject ds)
+        public int UpdateData(JObject ds, params string[] extras)
         {
             return 0;
         }

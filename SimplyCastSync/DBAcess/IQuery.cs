@@ -13,8 +13,9 @@ namespace SimplyCastSync.DBAccess
         /// 
         /// </summary>
         /// <param name="ds"></param>
+        /// <param name="extras"></param>
         /// <returns></returns>
-        int UpdateData(T ds);
+        int UpdateData(T ds, params string[] extras);
 
     }
 }

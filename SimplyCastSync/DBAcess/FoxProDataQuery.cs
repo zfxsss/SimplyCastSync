@@ -39,7 +39,7 @@ namespace SimplyCastSync.DBAccess
         /// </summary>
         /// <param name="ds"></param>
         /// <returns></returns>
-        public int UpdateData(DataSet ds)
+        public int UpdateData(DataSet ds, params string[] extras)
         {
             return 0;
         }
