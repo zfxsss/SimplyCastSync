@@ -5,6 +5,8 @@ namespace SimplyCastSync.DBAccess
 {
     public class FoxproDataQuery : IQuery<DataSet>, IDisposable
     {
+        private string _connstr;
+
         /// <summary>
         /// 
         /// </summary>
@@ -36,9 +38,9 @@ namespace SimplyCastSync.DBAccess
         /// <summary>
         /// 
         /// </summary>
-        public FoxproDataQuery()
+        public FoxproDataQuery(string connstr)
         {
-
+            _connstr = connstr;
         }
 
     }

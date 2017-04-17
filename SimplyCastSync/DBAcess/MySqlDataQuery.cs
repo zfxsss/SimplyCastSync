@@ -8,6 +8,7 @@ namespace SimplyCastSync.DBAccess
     /// </summary>
     public class MysqlDataQuery : IQuery<DataSet>, IDisposable
     {
+        private string _connstr;
         /// <summary>
         /// 
         /// </summary>
@@ -39,9 +40,9 @@ namespace SimplyCastSync.DBAccess
         /// <summary>
         /// 
         /// </summary>
-        public MysqlDataQuery()
+        public MysqlDataQuery(string connstr)
         {
-
+            _connstr = connstr;
         }
 
     }

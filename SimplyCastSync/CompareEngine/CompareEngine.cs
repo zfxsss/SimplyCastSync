@@ -37,6 +37,11 @@ namespace SimplyCastSync.CompareEngine
                     }
                 }
             }
+            else
+            {
+                throw new Exception("Null Configuration");
+            }
+
         }
     }
 }

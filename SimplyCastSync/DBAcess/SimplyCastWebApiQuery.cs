@@ -10,7 +10,7 @@ namespace SimplyCastSync.DBAccess
         /// <summary>
         /// 
         /// </summary>
-        public HttpClient HC { get; private set; }
+        private string _connstr;
 
         /// <summary>
         /// 
@@ -18,7 +18,7 @@ namespace SimplyCastSync.DBAccess
         /// <returns></returns>
         public JObject GetData(string querystr)
         {
-            //Ds = default(JArray);
+
             return null;
         }
         /// <summary>
@@ -41,11 +41,9 @@ namespace SimplyCastSync.DBAccess
         /// <summary>
         /// 
         /// </summary>
-        public SimplyCastWebApiQuery()
+        public SimplyCastWebApiQuery(string connstr)
         {
-            HC = new HttpClient();
-            HC.BaseAddress = new Uri("");
-            //HC.DefaultRequestHeaders
+            _connstr = connstr;
 
         }
     }

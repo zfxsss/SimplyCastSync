@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync.CompareEngine
+namespace SimplyCastSync.CompareEngine.RdOperation
 {
     /// <summary>
     /// 
@@ -20,7 +20,7 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        private KeyValuePair<string, string[]>[] fields;
+        private JObject fields;
 
         /// <summary>
         /// 
@@ -40,10 +40,10 @@ namespace SimplyCastSync.CompareEngine
         /// </summary>
         /// <param name="t"></param>
         /// <param name="kvps"></param>
-        public RdEquatable(JToken t, KeyValuePair<string, string[]>[] kvps)
+        public RdEquatable(JToken t, JObject config)
         {
             self = t;
-            fields = kvps;
+            fields = config;
         }
 
     }

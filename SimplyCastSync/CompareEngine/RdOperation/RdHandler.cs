@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync.CompareEngine
+namespace SimplyCastSync.CompareEngine.RdOperation
 {
     /// <summary>
     /// record event handler

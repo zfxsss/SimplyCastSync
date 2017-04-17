@@ -48,8 +48,8 @@
     <Compile Include="CompareEngine\CompareEngine.cs" />
     <Compile Include="CompareEngine\ComparerBuilder.cs" />
     <Compile Include="Config\ConfigRepository.cs" />
-    <Compile Include="CompareEngine\RdEquatable.cs" />
-    <Compile Include="DataSource\RdHandler.cs" />
+    <Compile Include="CompareEngine\RdOperation\RdEquatable.cs" />
+    <Compile Include="CompareEngine\RdOperation\RdHandler.cs" />
     <Compile Include="DBAcess\QueryProvider.cs" />
     <Compile Include="DBAcess\IProvider.cs" />
     <Compile Include="DBAcess\SimplyCastWebApiQuery.cs" />

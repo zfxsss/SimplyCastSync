@@ -23,15 +23,15 @@ namespace SimplyCastSync.DBAccess
         {
             if (queryname == "FoxproData")
             {
-                return new FoxproDataQuery() as IQuery<T>;
+                return new FoxproDataQuery(connstr) as IQuery<T>;
             }
             else if (queryname == "MysqlData")
             {
-                return new MysqlDataQuery() as IQuery<T>;
+                return new MysqlDataQuery(connstr) as IQuery<T>;
             }
             else if (queryname == "SimplyCastWebApi")
             {
-                return new SimplyCastWebApiQuery() as IQuery<T>;
+                return new SimplyCastWebApiQuery(connstr) as IQuery<T>;
             }
             else
                 throw new Exception("");
