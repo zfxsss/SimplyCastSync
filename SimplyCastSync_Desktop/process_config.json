@@ -4,11 +4,11 @@
     {
       "source": {
         "ds": "firstsrcds",
-        "table": "table1_src",
+        "table": [ "table1_src", "table_view" ], //["select * from person a inner join appointment b on a.id = b.personid", "sql"]
         "uniquefield": "id",
         "keyfields": [ "k1", "k2" ],
         "valuefields": [ "v1", "v2", "v3" ],
-        "fetchrangefield": [ "created", "time", "-30d", "now" ]
+        "rangefield": [ "created", "time", "-30d", "now" ]
       },
       "destination": {
         "ds": "firstdstds",
@@ -16,7 +16,7 @@
         "uniquefield": "id",
         "keyfields": [ "k1d", "k2d" ],
         "valuefields": [ "v1d", "v2d", "v3d" ],
-        "fetchrangefield": [ "created", "time", "-30d", "now" ]
+        "rangefield": [ "created", "time", "-30d", "now" ]
       }
     }
   ],

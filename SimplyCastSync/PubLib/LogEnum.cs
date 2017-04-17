@@ -2,7 +2,7 @@
 namespace SimplyCastSync.PubLib
 {
     /// <summary>
-    /// 异常类型
+    /// 
     /// </summary>
     public enum ExceptionType
     {
