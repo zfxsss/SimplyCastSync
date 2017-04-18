@@ -51,11 +51,11 @@ namespace SimplyCastSync.Runtime
             //minimum interval == 60 secs
             if (interval < 60)
             {
-                timespan = new TimeSpan(0, 0, 60);
+                timespan = TimeSpan.FromSeconds(60);
             }
             else
             {
-                timespan = new TimeSpan(0, 0, interval);
+                timespan = TimeSpan.FromSeconds(interval);
             }
         }
 

@@ -75,7 +75,7 @@ namespace SimplyCastSync.Runtime
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        public TaskStatus Run(Action action)
+        public TaskStatus Run(Action doit)
         {
             if (task == null)
             {
@@ -86,7 +86,7 @@ namespace SimplyCastSync.Runtime
                          //RuntimeTimer
                          if (RTT.Timeout())
                          {
-                             action();
+                             doit();
                          }
                          Thread.Sleep(1000);
                      }

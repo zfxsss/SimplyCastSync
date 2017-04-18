@@ -42,7 +42,7 @@ namespace SimplyCastSync.DBAccess
                 {
                     AddMetaData(client);
                     var gettask = client.GetAsync(querystr);
-                    gettask.Wait(TimeSpan.FromSeconds(30));
+                    gettask.Wait(TimeSpan.FromSeconds(15));
                     var readtask = gettask.Result.Content.ReadAsStringAsync();
                     readtask.Wait();
                     return JObject.Parse(readtask.Result);
@@ -56,7 +56,7 @@ namespace SimplyCastSync.DBAccess
             }
 
         }
-       
+
         /// <summary>
         /// 
         /// </summary>
@@ -67,6 +67,7 @@ namespace SimplyCastSync.DBAccess
         {
             return 0;
         }
+
         /// <summary>
         /// 
         /// </summary>

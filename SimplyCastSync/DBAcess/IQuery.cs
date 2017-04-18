@@ -1,7 +1,10 @@
 ﻿
 namespace SimplyCastSync.DBAccess
 {
-    using System.Data;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IQuery<T>
     {
         /// <summary>

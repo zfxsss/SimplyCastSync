@@ -15,38 +15,6 @@ namespace SimplyCastSync.CompareEngine
     /// </summary>
     public class JsonComparer<S, D> : IComparer
     {
-        #region useful?
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<long> ToBeInsertedRds_Src { get; private set; } = new List<long>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<long> ToBeDeletedRds_Src { get; private set; } = new List<long>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<long> ToBeUpdatedRds_Src { get; private set; } = new List<long>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<long> ToBeInsertedRds_Dest { get; private set; } = new List<long>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<long> ToBeDeletedRds_Dest { get; private set; } = new List<long>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<long> ToBeUpdatedRds_Dest { get; private set; } = new List<long>();
-
-        #endregion
         /// <summary>
         /// 
         /// </summary>
@@ -70,67 +38,83 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        private JObject jsource;
+        private JObject sourceconfig;
 
         /// <summary>
         /// 
         /// </summary>
-        private JObject jdestination;
+        private JObject destinationconfig;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="src"></param>
         /// <param name="dest"></param>
-        public JsonComparer(IQuery<S> src, IQuery<D> dest)
+        public JsonComparer(IQuery<S> srcq, IQuery<D> destq, JObject srcconfig, JObject destconfig)
         {
-            sourceq = src;
-            destinationq = dest;
+            sourceq = srcq;
+            destinationq = destq;
 
-            source = sourceq.GetData("");
-            destination = destinationq.GetData("");
+            sourceconfig = srcconfig;
+            destinationconfig = destconfig;
 
+            TypeCheck();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void TypeCheck()
+        {
+            // source
             if (typeof(S) == typeof(DataSet))
             {
-                jsource = JObject.Parse(JsonConvert.SerializeObject(source));
+                //jsource = JObject.Parse(JsonConvert.SerializeObject(source));
+                //add log here
+
             }
             else if (typeof(S) == typeof(JObject))
             {
+                //add log here
 
             }
             else
             {
+                //add log and throw exception
                 throw new Exception("Unsupported Source Type");
             }
 
+            // destination
             if (typeof(D) == typeof(DataSet))
             {
-                jdestination = JObject.Parse(JsonConvert.SerializeObject(destination));
-            }
-            else if (typeof(S) == typeof(JObject))
-            {
+                //jsource = JObject.Parse(JsonConvert.SerializeObject(source));
+                //add log here
 
+            }
+            else if (typeof(D) == typeof(JObject))
+            {
+                //add log here
             }
             else
             {
+                //add log and throw exception
                 throw new Exception("Unsupported Source Type");
             }
         }
-
 
         /// <summary>
         /// 
         /// </summary>
         public void Initialize()
         {
-            if ((jsource == null) || (jdestination == null))
-            {
-                throw new Exception("");
-            }
+            source = sourceq.GetData("");
+            destination = destinationq.GetData("");
 
-            if (jdestination.GetType() == typeof(JObject))
+            if ((source == null) || (destination == null))
             {
-                //Destination = (JArray)JDestination;
+                //add log and throw exception
+
+
             }
 
             //foreach (JObject item in jdestination)
@@ -145,6 +129,21 @@ namespace SimplyCastSync.CompareEngine
         /// </summary>
         public void Mark()
         {
+            if (typeof(D) == typeof(DataSet))
+            {
+
+            }
+            else if (typeof(D) == typeof(JObject))
+            {
+                if (typeof(S) == typeof(DataSet))
+                {
+
+                }
+                else if (typeof(S) == typeof(JObject))
+                {
+
+                }
+            }
 
         }
 
@@ -153,7 +152,16 @@ namespace SimplyCastSync.CompareEngine
         /// </summary>
         public void Commit()
         {
-
+            if (typeof(D) == typeof(JObject))
+            {
+                destinationq.UpdateData(destination);
+            }
+            else if (typeof(D) == typeof(DataSet))
+            {
+                destinationq.UpdateData(destination);
+            }
         }
+
+
     }
 }

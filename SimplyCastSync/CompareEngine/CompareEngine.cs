@@ -30,7 +30,9 @@ namespace SimplyCastSync.CompareEngine
                         src = pair["source"] as JObject;
                         dest = pair["destination"] as JObject;
 
-                        var cb = CB.GetComparer(src["ds"].ToString(), dest["ds"].ToString());
+                        //var cb = CB.GetComparer(src["ds"].ToString(), dest["ds"].ToString());
+                        var cb = CB.GetComparer(src, dest);
+                        
                         cb.Initialize();
                         cb.Mark();
                         cb.Commit();
