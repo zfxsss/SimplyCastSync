@@ -15,7 +15,7 @@ namespace SimplyCastSync.CompareEngine
 {
     public class CompareEngine
     {
-        public static void Run()
+        public static Action Sync = () =>
         {
             if (Content != null)
             {
@@ -42,6 +42,6 @@ namespace SimplyCastSync.CompareEngine
                 throw new Exception("Null Configuration");
             }
 
-        }
+        };
     }
 }

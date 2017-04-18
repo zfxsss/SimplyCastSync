@@ -64,6 +64,8 @@
     <Compile Include="PubLib\LogEnum.cs" />
     <Compile Include="PubLib\LogExportAsync.cs" />
     <Compile Include="PubLib\LogMgr.cs" />
+    <Compile Include="Runtime\EngineRuntime.cs" />
+    <Compile Include="Runtime\RuntimeTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

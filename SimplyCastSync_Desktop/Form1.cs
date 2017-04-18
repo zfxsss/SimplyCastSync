@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using SimplyCastSync.CompareEngine;
 using static SimplyCastSync.Config.ConfigRepository;
 using Newtonsoft.Json.Linq;
+using static SimplyCastSync.Runtime.EngineRuntime;
 
 namespace SimplyCastSync_Desktop
 {
@@ -23,6 +24,9 @@ namespace SimplyCastSync_Desktop
 
         private void rdconfig_btn_Click(object sender, EventArgs e)
         {
+            Runtime.Run(CompareEngine.Sync);
+            Runtime.Exit = true;
+
             var src = default(JObject);
             var dest = default(JObject);
             if (Content != null)
@@ -30,7 +34,7 @@ namespace SimplyCastSync_Desktop
                 var pairsconfig = Content["pairs"];
                 if ((pairsconfig != null) && pairsconfig.GetType() == typeof(JArray))
                 {
-                    foreach(var pair in pairsconfig)
+                    foreach (var pair in pairsconfig)
                     {
                         src = pair["source"] as JObject;
                         dest = pair["destination"] as JObject;
