@@ -94,7 +94,7 @@ namespace SimplyCastSync.CompareEngine
             {
                 jsource = JObject.Parse(JsonConvert.SerializeObject(source));
             }
-            else if (typeof(S) == typeof(JArray))
+            else if (typeof(S) == typeof(JObject))
             {
 
             }
@@ -107,7 +107,7 @@ namespace SimplyCastSync.CompareEngine
             {
                 jdestination = JObject.Parse(JsonConvert.SerializeObject(destination));
             }
-            else if (typeof(S) == typeof(JArray))
+            else if (typeof(S) == typeof(JObject))
             {
 
             }
@@ -128,7 +128,7 @@ namespace SimplyCastSync.CompareEngine
                 throw new Exception("");
             }
 
-            if (jdestination.GetType() == typeof(JArray))
+            if (jdestination.GetType() == typeof(JObject))
             {
                 //Destination = (JArray)JDestination;
             }
