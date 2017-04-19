@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyCastSync.CompareEngine.RdOperation
+namespace SimplyCastSync.CompareEngine.FieldOperation
 {
     /// <summary>
     /// 
     /// </summary>
-    public class RdEquatable : IEquatable<JToken>
+    public class FieldJsonEquatable : IEquatable<JToken>
     {
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace SimplyCastSync.CompareEngine.RdOperation
         /// </summary>
         /// <param name="t"></param>
         /// <param name="kvps"></param>
-        public RdEquatable(JToken t, JObject config)
+        public FieldJsonEquatable(JToken t, JObject config)
         {
             self = t;
             fields = config;

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SimplyCastSync.CompareEngine.Strategy;
 using SimplyCastSync.DBAccess;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace SimplyCastSync.CompareEngine
     /// <summary>
     /// 
     /// </summary>
-    public class JsonComparer<S, D> : IComparer
+    public class JsonComparer<S, D> : IComparerT<S, D>//, ISyncStrategy<S, D>
     {
         /// <summary>
         /// 
@@ -28,12 +29,12 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        private S source;
+        public S Source { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        private D destination;
+        public D Destination { get; private set; }
 
         /// <summary>
         /// 
@@ -44,6 +45,11 @@ namespace SimplyCastSync.CompareEngine
         /// 
         /// </summary>
         private JObject destinationconfig;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        //public Action<IComparerT<S, D>> StrategySync { get; private set; }
 
         /// <summary>
         /// 
@@ -105,12 +111,12 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        public void Initialize()
+        public void InitializeS(params object[] sp)
         {
-            source = sourceq.GetData("");
-            destination = destinationq.GetData("");
+            Source = sourceq.GetData("");
+            Destination = destinationq.GetData("");
 
-            if ((source == null) || (destination == null))
+            if ((Source == null) || (Destination == null))
             {
                 //add log and throw exception
 
@@ -122,6 +128,15 @@ namespace SimplyCastSync.CompareEngine
             //    item.Add("rds", new JValue(""));
             //    item["rds"] = DataSrcType.Foxpro.ToString();
             //}
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dp"></param>
+        public void InitializeD(params object[] dp)
+        {
+
         }
 
         /// <summary>
@@ -154,11 +169,11 @@ namespace SimplyCastSync.CompareEngine
         {
             if (typeof(D) == typeof(JObject))
             {
-                destinationq.UpdateData(destination);
+                destinationq.UpdateData(Destination);
             }
             else if (typeof(D) == typeof(DataSet))
             {
-                destinationq.UpdateData(destination);
+                destinationq.UpdateData(Destination);
             }
         }
 

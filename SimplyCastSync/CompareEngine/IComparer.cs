@@ -6,10 +6,17 @@ namespace SimplyCastSync.CompareEngine
     /// </summary>
     public interface IComparer
     {
+
         /// <summary>
         /// 
         /// </summary>
-        void Initialize();
+        void InitializeS(params object[] p);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        void InitializeD(params object[] p);
 
         /// <summary>
         /// 

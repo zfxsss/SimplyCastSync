@@ -10,11 +10,15 @@ using SimplyCastSync.DBAccess;
 using System.Data;
 using SimplyCastSync.CompareEngine;
 using static SimplyCastSync.CompareEngine.ComparerBuilder;
+using SimplyCastSync.CompareEngine.Strategy;
 
 namespace SimplyCastSync.CompareEngine
 {
     public class CompareEngine
     {
+        /// <summary>
+        ///
+        /// </summary>
         public static Action Sync = () =>
         {
             if (Content != null)
@@ -31,11 +35,15 @@ namespace SimplyCastSync.CompareEngine
                         dest = pair["destination"] as JObject;
 
                         //var cb = CB.GetComparer(src["ds"].ToString(), dest["ds"].ToString());
-                        var cb = CB.GetComparer(src, dest);
-                        
-                        cb.Initialize();
-                        cb.Mark();
-                        cb.Commit();
+                        var cb = CB.GetComparer<DataSet, JObject>(src, dest);
+                        StrategySyncProvider<DataSet, JObject>.SSP.GetStrategySync("")(cb);
+
+
+
+                        //cb.
+                        //cb.Initialize();
+                        //cb.Mark();
+                        //cb.Commit();
                     }
                 }
             }

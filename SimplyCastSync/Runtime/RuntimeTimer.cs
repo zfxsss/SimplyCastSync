@@ -13,8 +13,14 @@ namespace SimplyCastSync.Runtime
     /// </summary>
     public class RuntimeTimer
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private static RuntimeTimer rtt;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static RuntimeTimer RTT
         {
             get
