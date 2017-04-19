@@ -21,7 +21,7 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        void Mark();
+        void Mark(params object[] p);
 
         /// <summary>
         /// 

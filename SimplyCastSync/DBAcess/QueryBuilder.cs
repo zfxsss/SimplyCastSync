@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SimplyCastSync.DBAccess
 {
-    public class QueryProvider : IProvider
+    public class QueryBuilder : IDsBuilder
     {
-        public static QueryProvider DsProvider { get; } = new QueryProvider();
+        public static QueryBuilder DsBuilder { get; } = new QueryBuilder();
 
         /// <summary>
         /// 
@@ -41,7 +41,7 @@ namespace SimplyCastSync.DBAccess
         /// <summary>
         /// 
         /// </summary>
-        private QueryProvider()
+        private QueryBuilder()
         {
 
         }

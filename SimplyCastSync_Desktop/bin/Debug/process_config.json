@@ -4,57 +4,31 @@
     {
       "source": {
         "ds": "firstsrcds",
+        "dstype": "DataSet",
         "uniquefield": "id",
-        "keyfields": [ "k1", "k2" ],
-        /*
-        "uniquefield": {
-          "name": "id",
-          "path": ""
-        },
-        "keyfields": {
-          "names": [ "k1", "k2" ],
-          "path": [ "", "" ]
-        },  */
-        "valuefields": [ "v1", "v2", "v3" ],
+        "keyfields": [ "name" ],
+        "valuefields": [ "mytime", "age" ],
         "querystring": "select * from table_test1"
-        //"table": [ "table_test1", "table_view" ], //["select * from person a inner join appointment b on a.id = b.personid", "sql"]
-        //"rangefield": [ "created", "time", "-30d", "now" ]
       },
       "destination": {
         "ds": "firstdstds",
-        //"table": "table1_dst",
+        "dstype": "JObject",
         "fields": {
           "uniquefieldname": "id",
           "uniquefieldpath": "$.contacts[id]",
-          "keyfieldsname": [ "k1d", "k2d" ],
+          "keyfieldsname": [ "name" ],
           "keynametag": "name",
           "keyvaluetag": "value",
-          "otherfieldsname": [ "v1d", "v2d", "v3d" ],
+          "otherfieldsname": [ "mytime", "age" ],
           "othernametag": "name",
           "othervaluetag": "value",
           "existingpath": "$.contacts[?(@..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##keynametag##=='???' && @..##keyvaluetag##=='***')]",
-          "equalpath": "$.contacts[?(@..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###')]"
-        },
-        /*
-        "uniquefield": {
-          "name": "id",
-          "path": "$.contacts[id]"
-        },
-        "keyfields": {
-          "names": [ "k1d", "k2d" ],
-          "namefield": "name",
-          "valuefield": "value",
-          "path": "$.contacts[?(@..##namefield##=='##names[0]##' && @..##valuefield##=='***' && @..##namefield##=='???' && @..##valuefield##=='***')]"
-        },
-        "valuefields": {
-          "names": [ "v1d", "v2d", "v3d" ],
-          "namefield": "name",
-          "valuefield": "value",
-          "path": "$.contacts[?(@..##namefield##=='##names[0]##' && @..##valuefield##=='***' && @..##namefield##=='???' && @..##valuefield##=='***' && @..##namefield##=='???' && @..##valuefield##=='***')]"
-        }, */
-        "querystring": "?q=api/call&request=contactmanager/lists"
-        //"rangefield": [ "created", "time", "-30d", "now" ]
-      }
+          "equalpath": "$.contacts[?(@..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###')]",
+          "querystring": "contactmanager/contacts?query=`1` = \"{1}\""
+          //"querystring": "contactmanager/contacts?query=`23` = \"zhefeng_xu@hotmail.com\" AND `1` = \"hi\""
+        }
+      },
+      "syncstrategy": "DataSetToSimplyCastAPI"
     }
   ],
   "running": {
@@ -72,28 +46,16 @@
       "error": []
     }
   },
-  /*
-  "fetchrangefieldtype": {
-    "time": {
-      "accept": [ "y", "M", "d", "h", "m" ],
-      "prefix": [ "%d", "n,p" ]
-    },
-    "id": {
-      "prefix": [ "%d", "n,p" ]
-    }
-  },*/
   "datasource": [
     {
       "name": "firstsrcds",
       "queryname": "FoxproData",
-      "dstype": "DataSet",
       "connstr": "Provider=VFPOLEDB.1;Data Source=C:\\Users\\zhefeng\\Documents\\Foxpro;"
     },
     {
       "name": "firstdstds",
       "queryname": "SimplyCastWebApi",
-      "dstype": "JObject",
-      "connstr": "BaseAddress=https://app.simplycast.com;PublicKey=a8fe3712113090e5666a6b374452dc930d710553;SecretKey=7dc2feccd12ec26534a405c611f0134481c3394e;"
+      "connstr": "UpdateAddress=https://app.simplycast.com;QueryAddress=https://api.simplycast.com;PublicKey=a8fe3712113090e5666a6b374452dc930d710553;SecretKey=7dc2feccd12ec26534a405c611f0134481c3394e;"
     }
   ]
 }

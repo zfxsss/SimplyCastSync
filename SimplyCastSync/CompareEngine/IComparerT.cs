@@ -1,5 +1,7 @@
-﻿using SimplyCastSync.CompareEngine.Strategy;
+﻿using Newtonsoft.Json.Linq;
+using SimplyCastSync.CompareEngine.Strategy;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +14,27 @@ namespace SimplyCastSync.CompareEngine
     /// </summary>
     /// <typeparam name="S"></typeparam>
     /// <typeparam name="D"></typeparam>
-    public interface IComparerT<S, D> : IComparer, ISyncStrategy<S, D>
+    public interface IComparerT<S, D> : IComparer, ISyncStrategy<S, D> //where S : IEnumerable where D : IEnumerable
     {
         /// <summary>
         /// 
         /// </summary>
         S Source { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        JObject SourceConfig { get; }
+
         /// <summary>
         /// 
         /// </summary>
         D Destination { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        JObject DestinationConfig { get; }
     }
 
 }

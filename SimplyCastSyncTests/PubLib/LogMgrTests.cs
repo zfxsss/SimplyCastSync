@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimplyCastSync.PubLib;
+using SimplyCastSync.PubLib.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;

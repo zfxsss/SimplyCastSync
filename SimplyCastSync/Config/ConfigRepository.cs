@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json.Linq;
 
-using static SimplyCastSync.PubLib.Log;
+using static SimplyCastSync.PubLib.Log.Log;
 
 namespace SimplyCastSync.Config
 {
@@ -29,7 +29,7 @@ namespace SimplyCastSync.Config
                 }
                 catch (Exception ex)
                 {
-                    AddExceptionLog(new PubLib.ExceptionBody { }, PubLib.LogType.Console_File);
+                    AddExceptionLog(new PubLib.Log.ExceptionBody { }, PubLib.Log.LogType.Console_File);
                     return null;
                 }
             }

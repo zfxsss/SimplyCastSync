@@ -34,25 +34,25 @@ namespace SimplyCastSync.CompareEngine
                         src = pair["source"] as JObject;
                         dest = pair["destination"] as JObject;
                         syncstrategy = pair["syncstrategy"].ToString();
-                        // D => J
+                        // DataSet => JObject
                         if ((src["dstype"].ToString() == "DataSet") && (dest["dstype"].ToString() == "JObject"))
                         {
                             var comparer = CB.GetComparer<DataSet, JObject>(src, dest, syncstrategy);
                             comparer.StrategySync(comparer);
                         }
-                        // D => D
+                        // DataSet => DataSet
                         else if ((src["dstype"].ToString() == "DataSet") && (dest["dstype"].ToString() == "DataSet"))
                         {
                             var comparer = CB.GetComparer<DataSet, DataSet>(src, dest, syncstrategy);
                             comparer.StrategySync(comparer);
                         }
-                        // J => J
+                        // JObject => JObject
                         else if ((src["dstype"].ToString() == "JObject") && (dest["dstype"].ToString() == "JObject"))
                         {
                             var comparer = CB.GetComparer<JObject, JObject>(src, dest, syncstrategy);
                             comparer.StrategySync(comparer);
                         }
-                        // J => D
+                        // JObject => DataSet
                         else if ((src["dstype"].ToString() == "JObject") && (dest["dstype"].ToString() == "DataSet"))
                         {
                             var comparer = CB.GetComparer<JObject, DataSet>(src, dest, syncstrategy);

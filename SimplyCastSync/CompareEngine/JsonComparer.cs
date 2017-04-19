@@ -1,11 +1,13 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SimplyCastSync.CompareEngine.Strategy;
+using SimplyCastSync.CompareEngine.Strategy.Attributes;
 using SimplyCastSync.DBAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +16,7 @@ namespace SimplyCastSync.CompareEngine
     /// <summary>
     /// 
     /// </summary>
+    [QueryStringProvider("Not Defined")]
     public class JsonComparer<S, D> : IComparerT<S, D>
     {
         /// <summary>
@@ -39,12 +42,12 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        private JObject sourceconfig;
+        public JObject SourceConfig { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        private JObject destinationconfig;
+        public JObject DestinationConfig { get; private set; }
 
         /// <summary>
         /// 
@@ -61,16 +64,16 @@ namespace SimplyCastSync.CompareEngine
             sourceq = srcq;
             destinationq = destq;
 
-            sourceconfig = srcconfig;
-            destinationconfig = destconfig;
+            SourceConfig = srcconfig;
+            DestinationConfig = destconfig;
 
-            if (!string.IsNullOrEmpty(syncstrategy))
+            if (!string.IsNullOrWhiteSpace(syncstrategy))
             {
                 StrategySync = StrategySyncProvider<S, D>.SSP.GetStrategySync(syncstrategy);
             }
             else
             {
-
+                StrategySync = StrategySyncProvider<S, D>.SSP.GetStrategySync("");
             }
 
             TypeCheck();
@@ -122,21 +125,28 @@ namespace SimplyCastSync.CompareEngine
         /// </summary>
         public void InitializeS(params object[] sp)
         {
-            Source = sourceq.GetData("");
-            Destination = destinationq.GetData("");
+            if (sp != null && sp.Length > 0)
+            {
 
-            if ((Source == null) || (Destination == null))
+            }
+            else
+            {
+                Source = sourceq.GetData(SourceConfig["querystring"].ToString());
+            }
+
+            if (Source == null)
             {
                 //add log and throw exception
 
-
             }
 
+            #region not used
             //foreach (JObject item in jdestination)
             //{
             //    item.Add("rds", new JValue(""));
             //    item["rds"] = DataSrcType.Foxpro.ToString();
             //}
+            #endregion
         }
 
         /// <summary>
@@ -145,13 +155,25 @@ namespace SimplyCastSync.CompareEngine
         /// <param name="dp"></param>
         public void InitializeD(params object[] dp)
         {
+            string querystr = "";
+            if (dp != null && dp.Length > 0)
+            {
+                //Type t = this.GetType();
+                //var o = t.GetCustomAttributes(typeof(QueryStringProvider), false);
 
+            }
+            else
+            {
+
+            }
+
+            Destination = destinationq.GetData(querystr);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void Mark()
+        public void Mark(params object[] mp)
         {
             if (typeof(D) == typeof(DataSet))
             {

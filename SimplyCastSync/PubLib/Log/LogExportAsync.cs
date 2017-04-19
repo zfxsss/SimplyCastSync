@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-using static SimplyCastSync.PubLib.Log;
+using static SimplyCastSync.PubLib.Log.Log;
 
-namespace SimplyCastSync.PubLib
+namespace SimplyCastSync.PubLib.Log
 {
     /// <summary>
     /// 

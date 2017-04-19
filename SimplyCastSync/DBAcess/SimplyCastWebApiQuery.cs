@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -11,8 +12,9 @@ namespace SimplyCastSync.DBAccess
         /// <summary>
         /// 
         /// </summary>
-        private string baseaddress = "";
+        private string queryaddress = "";
 
+        private string updateaddress = "";
         /// <summary>
         /// 
         /// </summary>
@@ -22,9 +24,17 @@ namespace SimplyCastSync.DBAccess
         /// 
         /// </summary>
         /// <param name="client"></param>
-        private void AddMetaData(HttpClient client)
+        private void AddMetaData(HttpClient client, string optype)
         {
-            client.BaseAddress = new Uri(baseaddress);
+            if (optype == "query")
+            {
+                client.BaseAddress = new Uri(queryaddress);
+            }
+            else if (optype == "update")
+            {
+                client.BaseAddress = new Uri(updateaddress);
+            }
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("Authorization", "Basic " + key);
@@ -40,12 +50,19 @@ namespace SimplyCastSync.DBAccess
             {
                 try
                 {
-                    AddMetaData(client);
+                    AddMetaData(client, "query");
                     var gettask = client.GetAsync(querystr);
                     gettask.Wait(TimeSpan.FromSeconds(15));
-                    var readtask = gettask.Result.Content.ReadAsStringAsync();
-                    readtask.Wait();
-                    return JObject.Parse(readtask.Result);
+                    if (gettask.Result.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var readtask = gettask.Result.Content.ReadAsStringAsync();
+                        readtask.Wait();
+                        return JObject.Parse(readtask.Result);
+                    }
+                    else
+                    {
+                        return JObject.Parse(File.ReadAllText(@"\\JsonTemplate\\simplycast_emptycontacts.json"));
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -85,9 +102,13 @@ namespace SimplyCastSync.DBAccess
             string pubkey = "", secretkey = "";
             foreach (var configitem in info)
             {
-                if (configitem.Split('=')[0] == "BaseAddress")
+                if (configitem.Split('=')[0] == "QueryAddress")
                 {
-                    baseaddress = configitem.Split('=')[1];
+                    queryaddress = configitem.Split('=')[1];
+                }
+                else if (configitem.Split('=')[0] == "UpdateAddress")
+                {
+                    updateaddress = configitem.Split('=')[1];
                 }
                 else if (configitem.Split('=')[0] == "PublicKey")
                 {

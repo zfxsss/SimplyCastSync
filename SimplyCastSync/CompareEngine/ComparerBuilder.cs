@@ -29,8 +29,8 @@ namespace SimplyCastSync.CompareEngine
             var src_ds_config = Content["datasource"].Where(x => x["name"].ToString() == src["ds"].ToString()).First();
             var dest_ds_config = Content["datasource"].Where(x => x["name"].ToString() == dest["ds"].ToString()).First();
 
-            IQuery<S> q_src = QueryProvider.DsProvider.GetQuery<S>(src_ds_config["queryname"].ToString(), src_ds_config["connstr"].ToString());
-            IQuery<D> q_dest = QueryProvider.DsProvider.GetQuery<D>(dest_ds_config["queryname"].ToString(), dest_ds_config["connstr"].ToString());
+            IQuery<S> q_src = QueryBuilder.DsBuilder.GetQuery<S>(src_ds_config["queryname"].ToString(), src_ds_config["connstr"].ToString());
+            IQuery<D> q_dest = QueryBuilder.DsBuilder.GetQuery<D>(dest_ds_config["queryname"].ToString(), dest_ds_config["connstr"].ToString());
             return new JsonComparer<S, D>(q_src, q_dest, src, dest, syncstrategy);
 
             #region not used

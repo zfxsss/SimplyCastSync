@@ -1,5 +1,5 @@
 ﻿
-namespace SimplyCastSync.PubLib
+namespace SimplyCastSync.PubLib.Log
 {
     /// <summary>
     /// 

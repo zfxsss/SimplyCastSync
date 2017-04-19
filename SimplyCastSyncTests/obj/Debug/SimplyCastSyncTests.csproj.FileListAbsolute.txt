@@ -7,3 +7,4 @@ C:\projects\SimplyCastSync\SimplyCastSyncTests\bin\Debug\zh-Hans\Microsoft.Visua
 C:\projects\SimplyCastSync\SimplyCastSyncTests\obj\Debug\SimplyCastSyncTests.csprojResolveAssemblyReference.cache
 C:\projects\SimplyCastSync\SimplyCastSyncTests\obj\Debug\SimplyCastSyncTests.dll
 C:\projects\SimplyCastSync\SimplyCastSyncTests\obj\Debug\SimplyCastSyncTests.pdb
+C:\projects\SimplyCastSync\SimplyCastSyncTests\bin\Debug\JsonTemplate\simplycast_emptycontacts.json

@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections.Concurrent;
 using System.IO;
 
-namespace SimplyCastSync.PubLib
+namespace SimplyCastSync.PubLib.Log
 {
     /// <summary>
     /// Exception Body

@@ -47,12 +47,14 @@
   <ItemGroup>
     <Compile Include="CompareEngine\CompareEngine.cs" />
     <Compile Include="CompareEngine\ComparerBuilder.cs" />
+    <Compile Include="CompareEngine\Strategy\Attributes\QueryStringProvider.cs" />
     <Compile Include="CompareEngine\Strategy\ISyncStrategy.cs" />
     <Compile Include="CompareEngine\Strategy\StrategySyncProvider.cs" />
+    <Compile Include="CompareEngine\Strategy\Utility\QueryString.cs" />
     <Compile Include="Config\ConfigRepository.cs" />
-    <Compile Include="CompareEngine\FieldOperation\FieldJsonEquatable.cs" />
-    <Compile Include="DBAcess\QueryProvider.cs" />
-    <Compile Include="DBAcess\IProvider.cs" />
+    <Compile Include="CompareEngine\FieldOperation\JsonFieldEquatable.cs" />
+    <Compile Include="DBAcess\QueryBuilder.cs" />
+    <Compile Include="DBAcess\IDsBuilder.cs" />
     <Compile Include="DBAcess\SimplyCastWebApiQuery.cs" />
     <Compile Include="DBAcess\FoxproDataQuery.cs" />
     <Compile Include="CompareEngine\IComparer.cs" />
@@ -62,14 +64,17 @@
     <Compile Include="DomainException\DomainException.cs" />
     <Compile Include="CompareEngine\IComparerT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PubLib\Log.cs" />
-    <Compile Include="PubLib\LogEnum.cs" />
-    <Compile Include="PubLib\LogExportAsync.cs" />
-    <Compile Include="PubLib\LogMgr.cs" />
+    <Compile Include="PubLib\Log\Log.cs" />
+    <Compile Include="PubLib\Log\LogEnum.cs" />
+    <Compile Include="PubLib\Log\LogExportAsync.cs" />
+    <Compile Include="PubLib\Log\LogMgr.cs" />
     <Compile Include="Runtime\EngineRuntime.cs" />
     <Compile Include="Runtime\RuntimeTimer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="JsonTemplate\simplycast_emptycontacts.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="process_config.json" />
   </ItemGroup>

@@ -4,7 +4,7 @@ namespace SimplyCastSync.DBAccess
     /// <summary>
     /// 
     /// </summary>
-    public interface IProvider
+    public interface IDsBuilder
     {
         /// <summary>
         /// 

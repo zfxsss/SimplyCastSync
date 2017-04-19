@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CompareEngine\Strategy\StrategySyncProviderTests.cs" />
     <Compile Include="DBAcess\FoxproDataQueryTests.cs" />
     <Compile Include="DBAcess\SimplyCastWebApiQueryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +64,11 @@
       <Project>{F5F362BF-CAAE-4991-A61D-41E4343CFAF7}</Project>
       <Name>SimplyCastSync</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JsonTemplate\simplycast_emptycontacts.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

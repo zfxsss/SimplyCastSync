@@ -10,7 +10,7 @@ namespace SimplyCastSync.CompareEngine.FieldOperation
     /// <summary>
     /// 
     /// </summary>
-    public class FieldJsonEquatable : IEquatable<JToken>
+    public class JsonFieldEquatable : IEquatable<JToken>
     {
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace SimplyCastSync.CompareEngine.FieldOperation
         /// </summary>
         /// <param name="t"></param>
         /// <param name="kvps"></param>
-        public FieldJsonEquatable(JToken t, JObject config)
+        public JsonFieldEquatable(JToken t, JObject config)
         {
             self = t;
             fields = config;
