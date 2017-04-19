@@ -14,7 +14,7 @@ namespace SimplyCastSync.CompareEngine
     /// <summary>
     /// 
     /// </summary>
-    public class JsonComparer<S, D> : IComparerT<S, D>//, ISyncStrategy<S, D>
+    public class JsonComparer<S, D> : IComparerT<S, D>
     {
         /// <summary>
         /// 
@@ -49,20 +49,29 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        //public Action<IComparerT<S, D>> StrategySync { get; private set; }
+        public Action<IComparerT<S, D>> StrategySync { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="src"></param>
         /// <param name="dest"></param>
-        public JsonComparer(IQuery<S> srcq, IQuery<D> destq, JObject srcconfig, JObject destconfig)
+        public JsonComparer(IQuery<S> srcq, IQuery<D> destq, JObject srcconfig, JObject destconfig, string syncstrategy)
         {
             sourceq = srcq;
             destinationq = destq;
 
             sourceconfig = srcconfig;
             destinationconfig = destconfig;
+
+            if (!string.IsNullOrEmpty(syncstrategy))
+            {
+                StrategySync = StrategySyncProvider<S, D>.SSP.GetStrategySync(syncstrategy);
+            }
+            else
+            {
+
+            }
 
             TypeCheck();
         }

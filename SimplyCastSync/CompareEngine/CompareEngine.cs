@@ -28,22 +28,40 @@ namespace SimplyCastSync.CompareEngine
                 {
                     var src = default(JObject);
                     var dest = default(JObject);
-
+                    string syncstrategy = "";
                     foreach (var pair in pairsconfig)
                     {
                         src = pair["source"] as JObject;
                         dest = pair["destination"] as JObject;
+                        syncstrategy = pair["syncstrategy"].ToString();
+                        // D => J
+                        if ((src["dstype"].ToString() == "DataSet") && (dest["dstype"].ToString() == "JObject"))
+                        {
+                            var comparer = CB.GetComparer<DataSet, JObject>(src, dest, syncstrategy);
+                            comparer.StrategySync(comparer);
+                        }
+                        // D => D
+                        else if ((src["dstype"].ToString() == "DataSet") && (dest["dstype"].ToString() == "DataSet"))
+                        {
+                            var comparer = CB.GetComparer<DataSet, DataSet>(src, dest, syncstrategy);
+                            comparer.StrategySync(comparer);
+                        }
+                        // J => J
+                        else if ((src["dstype"].ToString() == "JObject") && (dest["dstype"].ToString() == "JObject"))
+                        {
+                            var comparer = CB.GetComparer<JObject, JObject>(src, dest, syncstrategy);
+                            comparer.StrategySync(comparer);
+                        }
+                        // J => D
+                        else if ((src["dstype"].ToString() == "JObject") && (dest["dstype"].ToString() == "DataSet"))
+                        {
+                            var comparer = CB.GetComparer<JObject, DataSet>(src, dest, syncstrategy);
+                            comparer.StrategySync(comparer);
+                        }
+                        // not supported
+                        else
+                            throw new Exception("");
 
-                        //var cb = CB.GetComparer(src["ds"].ToString(), dest["ds"].ToString());
-                        var cb = CB.GetComparer<DataSet, JObject>(src, dest);
-                        StrategySyncProvider<DataSet, JObject>.SSP.GetStrategySync("")(cb);
-
-
-
-                        //cb.
-                        //cb.Initialize();
-                        //cb.Mark();
-                        //cb.Commit();
                     }
                 }
             }

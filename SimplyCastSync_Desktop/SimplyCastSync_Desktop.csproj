@@ -71,6 +71,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="process_config_backup2.json" />
     <None Include="process_config_backup.json" />
     <None Include="process_config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -24,14 +24,14 @@ namespace SimplyCastSync.CompareEngine
         /// <param name="srcdsname"></param>
         /// <param name="destdsname"></param>
         /// <returns></returns>
-        public IComparerT<S, D> GetComparer<S, D>(JObject src, JObject dest)
+        public IComparerT<S, D> GetComparer<S, D>(JObject src, JObject dest, string syncstrategy)
         {
             var src_ds_config = Content["datasource"].Where(x => x["name"].ToString() == src["ds"].ToString()).First();
             var dest_ds_config = Content["datasource"].Where(x => x["name"].ToString() == dest["ds"].ToString()).First();
 
             IQuery<S> q_src = QueryProvider.DsProvider.GetQuery<S>(src_ds_config["queryname"].ToString(), src_ds_config["connstr"].ToString());
             IQuery<D> q_dest = QueryProvider.DsProvider.GetQuery<D>(dest_ds_config["queryname"].ToString(), dest_ds_config["connstr"].ToString());
-            return new JsonComparer<S, D>(q_src, q_dest, src, dest);
+            return new JsonComparer<S, D>(q_src, q_dest, src, dest, syncstrategy);
 
             #region not used
             ////D => D
