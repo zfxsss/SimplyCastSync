@@ -33,29 +33,29 @@ namespace SimplyCastSync.CompareEngine
                     {
                         src = pair["source"] as JObject;
                         dest = pair["destination"] as JObject;
-                        syncstrategy = pair["syncstrategy"].ToString();
+
                         // DataSet => JObject
                         if ((src["dstype"].ToString() == "DataSet") && (dest["dstype"].ToString() == "JObject"))
                         {
-                            var comparer = CB.GetComparer<DataSet, JObject>(src, dest, syncstrategy);
+                            var comparer = CB.GetComparer<DataSet, JObject>((JObject)pair);
                             comparer.StrategySync(comparer);
                         }
                         // DataSet => DataSet
                         else if ((src["dstype"].ToString() == "DataSet") && (dest["dstype"].ToString() == "DataSet"))
                         {
-                            var comparer = CB.GetComparer<DataSet, DataSet>(src, dest, syncstrategy);
+                            var comparer = CB.GetComparer<DataSet, DataSet>((JObject)pair);
                             comparer.StrategySync(comparer);
                         }
                         // JObject => JObject
                         else if ((src["dstype"].ToString() == "JObject") && (dest["dstype"].ToString() == "JObject"))
                         {
-                            var comparer = CB.GetComparer<JObject, JObject>(src, dest, syncstrategy);
+                            var comparer = CB.GetComparer<JObject, JObject>((JObject)pair);
                             comparer.StrategySync(comparer);
                         }
                         // JObject => DataSet
                         else if ((src["dstype"].ToString() == "JObject") && (dest["dstype"].ToString() == "DataSet"))
                         {
-                            var comparer = CB.GetComparer<JObject, DataSet>(src, dest, syncstrategy);
+                            var comparer = CB.GetComparer<JObject, DataSet>((JObject)pair);
                             comparer.StrategySync(comparer);
                         }
                         // not supported

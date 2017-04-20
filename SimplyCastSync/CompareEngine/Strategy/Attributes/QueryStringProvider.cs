@@ -6,13 +6,24 @@ using System.Threading.Tasks;
 
 namespace SimplyCastSync.CompareEngine.Strategy.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class, Inherited = true)]
-    class QueryStringProvider : Attribute
+    /// <summary>
+    /// 
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
+    public class QueryStringProvider : Attribute
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providername"></param>
         public QueryStringProvider(string providername)
         {
             ProviderName = providername;
         }
-        public string ProviderName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ProviderName { get; private set; }
     }
 }

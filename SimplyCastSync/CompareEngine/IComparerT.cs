@@ -24,17 +24,12 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        JObject SourceConfig { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         D Destination { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        JObject DestinationConfig { get; }
+        JObject Config { get; }
     }
 
 }

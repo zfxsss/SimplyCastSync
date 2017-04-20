@@ -58,28 +58,25 @@ namespace SimplyCastSync.CompareEngine.Strategy
                 //    ((QueryStringProvider)attrs[0]).ProviderName = "SimplyCastQuery";
                 //}
                 comparer.InitializeS();
-                if (comparer.Source != null)
+
+                if (typeof(S) == typeof(DataSet))
                 {
-                    if (typeof(S) == typeof(DataSet))
+                    var src = JsonConvert.SerializeObject(comparer.Source as DataSet, Formatting.Indented);
+                    var jsrc = JObject.Parse(src);
+                    foreach (var srd in jsrc.First.Values())
                     {
-                        var src = JsonConvert.SerializeObject(comparer.Source as DataSet, Formatting.Indented);
-                        var jsrc = JObject.Parse(src);
-                        foreach (var srd in jsrc.First.Values())
+                        var initparams = new List<JToken>();
+                        foreach (var param in comparer.Config["source"]["keyfields"])
                         {
-                            var initparams = new List<JToken>();
-                            foreach (var param in comparer.SourceConfig["keyfields"])
-                            {
-                                initparams.Add(new JProperty(param.Value<string>(), srd[param.Value<string>()]));
-                            }
-
-                            comparer.InitializeD(initparams.ToArray());
-                            comparer.Mark(new JToken[] { srd });
+                            initparams.Add(new JProperty(param.Value<string>(), srd[param.Value<string>()]));
                         }
+
+                        comparer.InitializeD(initparams.ToArray());
+                        comparer.Mark(new JToken[] { srd });
                     }
-
                 }
-            }
 
+            }
         };
 
         /// <summary>

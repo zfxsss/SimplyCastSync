@@ -27,10 +27,9 @@ namespace SimplyCastSync.CompareEngine.Strategy.Tests
             {
                 var src = pair["source"] as JObject;
                 var dest = pair["destination"] as JObject;
-                var syncstrategy = pair["syncstrategy"].ToString();
 
 
-                var comparer = CB.GetComparer<DataSet, JObject>(src, dest, syncstrategy);
+                var comparer = CB.GetComparer<DataSet, JObject>((JObject)pair);
                 comparer.StrategySync(comparer);
             }
 

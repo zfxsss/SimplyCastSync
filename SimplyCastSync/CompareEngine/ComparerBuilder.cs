@@ -24,14 +24,14 @@ namespace SimplyCastSync.CompareEngine
         /// <param name="srcdsname"></param>
         /// <param name="destdsname"></param>
         /// <returns></returns>
-        public IComparerT<S, D> GetComparer<S, D>(JObject src, JObject dest, string syncstrategy)
+        public IComparerT<S, D> GetComparer<S, D>(JObject config)
         {
-            var src_ds_config = Content["datasource"].Where(x => x["name"].ToString() == src["ds"].ToString()).First();
-            var dest_ds_config = Content["datasource"].Where(x => x["name"].ToString() == dest["ds"].ToString()).First();
+            var src_ds_config = Content["datasource"].Where(x => x["name"].ToString() == config["source"]["ds"].ToString()).First();
+            var dest_ds_config = Content["datasource"].Where(x => x["name"].ToString() == config["destination"]["ds"].ToString()).First();
 
             IQuery<S> q_src = QueryBuilder.DsBuilder.GetQuery<S>(src_ds_config["queryname"].ToString(), src_ds_config["connstr"].ToString());
             IQuery<D> q_dest = QueryBuilder.DsBuilder.GetQuery<D>(dest_ds_config["queryname"].ToString(), dest_ds_config["connstr"].ToString());
-            return new JsonComparer<S, D>(q_src, q_dest, src, dest, syncstrategy);
+            return new JsonComparer<S, D>(q_src, q_dest, config);
 
             #region not used
             ////D => D
