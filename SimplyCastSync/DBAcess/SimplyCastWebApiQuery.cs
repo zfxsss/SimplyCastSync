@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SimplyCastSync.DBAccess
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SimplyCastWebApiQuery : IQuery<JObject>, IDisposable
     {
         /// <summary>
@@ -14,7 +17,11 @@ namespace SimplyCastSync.DBAccess
         /// </summary>
         private string queryaddress = "";
 
+        /// <summary>
+        /// 
+        /// </summary>
         private string updateaddress = "";
+
         /// <summary>
         /// 
         /// </summary>
@@ -61,6 +68,7 @@ namespace SimplyCastSync.DBAccess
                     }
                     else
                     {
+                        // need modify for configurable files
                         return JObject.Parse(File.ReadAllText(@"\\JsonTemplate\\simplycast_emptycontacts.json"));
                     }
                 }

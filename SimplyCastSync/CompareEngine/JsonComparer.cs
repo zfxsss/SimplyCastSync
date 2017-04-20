@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using SimplyCastSync.CompareEngine.Strategy;
 using SimplyCastSync.CompareEngine.Strategy.Attributes;
+using SimplyCastSync.CompareEngine.Strategy.Utility;
 using SimplyCastSync.DBAccess;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace SimplyCastSync.CompareEngine
     /// <summary>
     /// 
     /// </summary>
-    [QueryStringProvider("Not Defined")]
+    [QueryStringProvider("CommonRegex")]
     public class JsonComparer<S, D> : IComparerT<S, D>
     {
         /// <summary>
@@ -42,12 +43,7 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        public JObject SourceConfig { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public JObject DestinationConfig { get; private set; }
+        public JObject Config { get; private set; }
 
         /// <summary>
         /// 
@@ -59,17 +55,16 @@ namespace SimplyCastSync.CompareEngine
         /// </summary>
         /// <param name="src"></param>
         /// <param name="dest"></param>
-        public JsonComparer(IQuery<S> srcq, IQuery<D> destq, JObject srcconfig, JObject destconfig, string syncstrategy)
+        public JsonComparer(IQuery<S> srcq, IQuery<D> destq, JObject config)
         {
             sourceq = srcq;
             destinationq = destq;
 
-            SourceConfig = srcconfig;
-            DestinationConfig = destconfig;
+            Config = config;
 
-            if (!string.IsNullOrWhiteSpace(syncstrategy))
+            if (!string.IsNullOrWhiteSpace(Config["syncstrategy"].ToString()))
             {
-                StrategySync = StrategySyncProvider<S, D>.SSP.GetStrategySync(syncstrategy);
+                StrategySync = StrategySyncProvider<S, D>.SSP.GetStrategySync(Config["syncstrategy"].ToString());
             }
             else
             {
@@ -127,11 +122,11 @@ namespace SimplyCastSync.CompareEngine
         {
             if (sp != null && sp.Length > 0)
             {
-
+                //add handler
             }
             else
             {
-                Source = sourceq.GetData(SourceConfig["querystring"].ToString());
+                Source = sourceq.GetData(Config["source"]["querystring"].ToString());
             }
 
             if (Source == null)
@@ -140,13 +135,6 @@ namespace SimplyCastSync.CompareEngine
 
             }
 
-            #region not used
-            //foreach (JObject item in jdestination)
-            //{
-            //    item.Add("rds", new JValue(""));
-            //    item["rds"] = DataSrcType.Foxpro.ToString();
-            //}
-            #endregion
         }
 
         /// <summary>
@@ -158,36 +146,83 @@ namespace SimplyCastSync.CompareEngine
             string querystr = "";
             if (dp != null && dp.Length > 0)
             {
-                //Type t = this.GetType();
-                //var o = t.GetCustomAttributes(typeof(QueryStringProvider), false);
+                var attrs = this.GetType().GetCustomAttributes(typeof(QueryStringProvider), false);
+                if (attrs != null && attrs.Length > 0)
+                {
+                    querystr = QueryString.GetQueryString(((QueryStringProvider)attrs[0]).ProviderName, dp);
+                    Destination = destinationq.GetData(querystr);
+                }
+                else
+                {
+                    //throw error
+
+                }
 
             }
             else
             {
-
+                //no params
+                Destination = destinationq.GetData("");
             }
 
-            Destination = destinationq.GetData(querystr);
+
         }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="mp"></param>
         public void Mark(params object[] mp)
         {
-            if (typeof(D) == typeof(DataSet))
+            if (mp != null && mp.Length > 0)
             {
-
-            }
-            else if (typeof(D) == typeof(JObject))
-            {
-                if (typeof(S) == typeof(DataSet))
+                if (typeof(D) == typeof(DataSet))
                 {
 
                 }
-                else if (typeof(S) == typeof(JObject))
+                else if (typeof(D) == typeof(JObject))
                 {
+                    var token_existing = (Destination as JObject).SelectToken("");
+                    if (token_existing != null)
+                    {
+                        var token_equal = (Destination as JObject).SelectToken("");
+                        if (token_equal != null)
+                        {
+                            //Destination operation
 
+                        }
+                    }
+                    else
+                    {
+                        //Destination operation
+
+                    }
+
+                }
+            }
+            else
+            {
+                if (typeof(D) == typeof(DataSet))
+                {
+                    if (typeof(S) == typeof(DataSet))
+                    {
+
+                    }
+                    else if (typeof(S) == typeof(JObject))
+                    {
+
+                    }
+                }
+                else if (typeof(D) == typeof(JObject))
+                {
+                    if (typeof(S) == typeof(DataSet))
+                    {
+
+                    }
+                    else if (typeof(S) == typeof(JObject))
+                    {
+
+                    }
                 }
             }
 
@@ -198,14 +233,18 @@ namespace SimplyCastSync.CompareEngine
         /// </summary>
         public void Commit()
         {
-            if (typeof(D) == typeof(JObject))
-            {
-                destinationq.UpdateData(Destination);
-            }
-            else if (typeof(D) == typeof(DataSet))
-            {
-                destinationq.UpdateData(Destination);
-            }
+            destinationq.UpdateData(Destination);
+
+            #region temperory
+            //if (typeof(D) == typeof(JObject))
+            //{
+            //    destinationq.UpdateData(Destination);
+            //}
+            //else if (typeof(D) == typeof(DataSet))
+            //{
+            //    destinationq.UpdateData(Destination);
+            //}
+            #endregion
         }
 
 
