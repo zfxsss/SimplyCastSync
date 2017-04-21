@@ -28,7 +28,7 @@ namespace SimplyCastSync.CompareEngine
                 {
                     var src = default(JObject);
                     var dest = default(JObject);
-                    string syncstrategy = "";
+                    //string syncstrategy = "";
                     foreach (var pair in pairsconfig)
                     {
                         src = pair["source"] as JObject;

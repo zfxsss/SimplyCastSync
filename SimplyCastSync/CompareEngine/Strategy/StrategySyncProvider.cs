@@ -57,7 +57,9 @@ namespace SimplyCastSync.CompareEngine.Strategy
                 //{
                 //    ((QueryStringProvider)attrs[0]).ProviderName = "SimplyCastQuery";
                 //}
-                comparer.InitializeS();
+
+                //may introduce different strategies
+                comparer.InitializeS("none");
 
                 if (typeof(S) == typeof(DataSet))
                 {
@@ -71,7 +73,7 @@ namespace SimplyCastSync.CompareEngine.Strategy
                             initparams.Add(new JProperty(param.Value<string>(), srd[param.Value<string>()]));
                         }
 
-                        comparer.InitializeD(initparams.ToArray());
+                        comparer.InitializeD("none", initparams.ToArray());
                         comparer.Mark(new JToken[] { srd });
                     }
                 }

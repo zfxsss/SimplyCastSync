@@ -66,10 +66,14 @@ namespace SimplyCastSync.DBAccess
                         readtask.Wait();
                         return JObject.Parse(readtask.Result);
                     }
-                    else
+                    else if (gettask.Result.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
                         // need modify for configurable files
                         return JObject.Parse(File.ReadAllText(@"\\JsonTemplate\\simplycast_emptycontacts.json"));
+                    }
+                    else
+                    {
+                        throw new Exception("");
                     }
                 }
                 catch (Exception ex)
@@ -90,6 +94,8 @@ namespace SimplyCastSync.DBAccess
         /// <returns></returns>
         public int UpdateData(JObject ds, params string[] extras)
         {
+            //need extras to thell httpclient the exact address of update
+
             return 0;
         }
 

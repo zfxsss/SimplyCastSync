@@ -118,7 +118,7 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        public void InitializeS(params object[] sp)
+        public void InitializeS(string strategy, params object[] sp)
         {
             if (sp != null && sp.Length > 0)
             {
@@ -141,7 +141,7 @@ namespace SimplyCastSync.CompareEngine
         /// 
         /// </summary>
         /// <param name="dp"></param>
-        public void InitializeD(params object[] dp)
+        public void InitializeD(string strategy, params object[] dp)
         {
             string querystr = "";
             if (dp != null && dp.Length > 0)
@@ -165,6 +165,12 @@ namespace SimplyCastSync.CompareEngine
                 Destination = destinationq.GetData("");
             }
 
+            if (Destination == null)
+            {
+                // add log and throw exception
+
+            }
+
 
         }
 
@@ -178,6 +184,9 @@ namespace SimplyCastSync.CompareEngine
             {
                 if (typeof(D) == typeof(DataSet))
                 {
+                    //
+
+                    var row_Existing = (Destination as DataSet).Tables[0].Select("");
 
                 }
                 else if (typeof(D) == typeof(JObject))
@@ -189,6 +198,7 @@ namespace SimplyCastSync.CompareEngine
                         if (token_equal != null)
                         {
                             //Destination operation
+                            //add root property "_changeset": [{"id":1,"name":"Joe"...,"_rdstatus":"update"},{"name":"Harry",...,"_rdstatus":"add"}]
 
                         }
                     }
@@ -233,7 +243,11 @@ namespace SimplyCastSync.CompareEngine
         /// </summary>
         public void Commit()
         {
-            destinationq.UpdateData(Destination);
+            // need to provide remote url in the second parameter
+            int total = destinationq.UpdateData(Destination, null);
+
+            // add log
+
 
             #region temperory
             //if (typeof(D) == typeof(JObject))

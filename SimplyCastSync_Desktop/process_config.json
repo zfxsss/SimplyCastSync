@@ -24,8 +24,9 @@
           "othervaluetag": "value",
           "existingpath": "$.contacts[?(@..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##keynametag##=='???' && @..##keyvaluetag##=='***')]",
           "equalpath": "$.contacts[?(@..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###')]",
-          "querystring": "contactmanager/contacts?query=`1` = \"{1}\""
+          "querystring": "contactmanager/contacts?query=`1` = \"{1}\"",
           //"querystring": "contactmanager/contacts?query=`23` = \"zhefeng_xu@hotmail.com\" AND `1` = \"hi\""
+          "updatestring": ""
         }
       },
       "syncstrategy": "DataSetToSimplyCastAPI"
