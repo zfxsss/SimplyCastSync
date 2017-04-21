@@ -10,13 +10,13 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        void InitializeS(params object[] p);
+        void InitializeS(string initstrategy, params object[] p);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="p"></param>
-        void InitializeD(params object[] p);
+        void InitializeD(string initstrategy, params object[] p);
 
         /// <summary>
         /// 
