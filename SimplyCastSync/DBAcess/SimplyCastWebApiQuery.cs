@@ -68,8 +68,8 @@ namespace SimplyCastSync.DBAccess
                     }
                     else if (gettask.Result.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
-                        // need modify for configurable files
-                        return JObject.Parse(File.ReadAllText(@"\\JsonTemplate\\simplycast_emptycontacts.json"));
+                        // need modify for configurable files, how to config file route......
+                        return JObject.Parse(File.ReadAllText(@"JsonTemplate\simplycast_emptycontacts.json"));
                     }
                     else
                     {
@@ -95,7 +95,7 @@ namespace SimplyCastSync.DBAccess
         public int UpdateData(JObject ds, params string[] extras)
         {
             //need extras to thell httpclient the exact address of update
-
+            //and this method has the knowledge of msg body format
             return 0;
         }
 

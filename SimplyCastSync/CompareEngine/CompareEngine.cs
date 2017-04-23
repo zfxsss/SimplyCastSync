@@ -14,6 +14,9 @@ using SimplyCastSync.CompareEngine.Strategy;
 
 namespace SimplyCastSync.CompareEngine
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CompareEngine
     {
         /// <summary>

@@ -18,6 +18,7 @@ namespace SimplyCastSync.CompareEngine
     /// 
     /// </summary>
     [QueryStringProvider("CommonRegex")]
+    [StrategyValidation("Default")]
     public class JsonComparer<S, D> : IComparerT<S, D>
     {
         /// <summary>
@@ -118,15 +119,54 @@ namespace SimplyCastSync.CompareEngine
         /// <summary>
         /// 
         /// </summary>
-        public void InitializeS(string strategy, params object[] sp)
+        /// <param name="strategyname"></param>
+        /// <param name="p"></param>
+        private void StrategyValidationCheck(string strategyname, object[] p)
         {
-            if (sp != null && sp.Length > 0)
+            var attrs = GetType().GetCustomAttributes(typeof(StrategyValidation), false);
+
+            if (attrs != null && attrs.Length > 0)
             {
-                //add handler
+                if ((attrs[0] as StrategyValidation).Collection.First(s => s.StrategyName == strategyname).UsingParams)
+                {
+                    if (p == null || p.Length == 0)
+                    {
+                        throw new Exception("");
+                    }
+                }
             }
             else
             {
+                //throw error
+                throw new Exception("");
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strategy"></param>
+        /// <param name="sp"></param>
+        public void InitializeS(string strategy, params object[] sp)
+        {
+            //StrategyValidationCheck(strategy, sp);
+
+            if (strategy == "FromQueryString_Static")
+            {
                 Source = sourceq.GetData(Config["source"]["querystring"].ToString());
+            }
+            // might use sp params
+            else
+            {
+                if (sp != null && sp.Length > 0)
+                {
+                    //add handler
+                }
+                else
+                {
+                    //might throw exceptions
+                }
             }
 
             if (Source == null)
@@ -137,28 +177,37 @@ namespace SimplyCastSync.CompareEngine
 
         }
 
+
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="strategy"></param>
         /// <param name="dp"></param>
         public void InitializeD(string strategy, params object[] dp)
         {
+            //StrategyValidationCheck(strategy, dp);
+
             string querystr = "";
-            if (dp != null && dp.Length > 0)
+
+            if (strategy == "SeeParams_Single")
             {
-                var attrs = this.GetType().GetCustomAttributes(typeof(QueryStringProvider), false);
-                if (attrs != null && attrs.Length > 0)
+                if (dp != null && dp.Length > 0)
                 {
-                    querystr = QueryString.GetQueryString(((QueryStringProvider)attrs[0]).ProviderName, dp);
-                    Destination = destinationq.GetData(querystr);
-                }
-                else
-                {
-                    //throw error
+                    //resolve querystring
+                    var attrs = GetType().GetCustomAttributes(typeof(QueryStringProvider), false);
+                    if (attrs != null && attrs.Length > 0)
+                    {
+                        querystr = QueryStringResolver.GetQueryString(((QueryStringProvider)attrs[0]).ProviderName, Config["destination"]["querystring"].ToString(), dp);
+                        Destination = destinationq.GetData(querystr);
+                    }
+                    else
+                    {
+                        //throw error
 
+                    }
                 }
-
             }
+            //other strategy
             else
             {
                 //no params
@@ -171,69 +220,104 @@ namespace SimplyCastSync.CompareEngine
 
             }
 
-
         }
+
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="strategy"></param>
         /// <param name="mp"></param>
-        public void Mark(params object[] mp)
+        public void Mark(string strategy, params object[] mp)
         {
-            if (mp != null && mp.Length > 0)
+            //StrategyValidationCheck(strategy, mp);
+
+            if (strategy == "SeeParams_Add_UpdateAnyway")
             {
+
                 if (typeof(D) == typeof(DataSet))
                 {
-                    //
-
-                    var row_Existing = (Destination as DataSet).Tables[0].Select("");
+                    //implemented later
+                    var row_existing = (Destination as DataSet).Tables[0].Select("");
 
                 }
                 else if (typeof(D) == typeof(JObject))
                 {
+
+                    //resolve jsonpath
+
                     var token_existing = (Destination as JObject).SelectToken("");
+
+                    //existing
                     if (token_existing != null)
                     {
-                        var token_equal = (Destination as JObject).SelectToken("");
-                        if (token_equal != null)
-                        {
-                            //Destination operation
-                            //add root property "_changeset": [{"id":1,"name":"Joe"...,"_rdstatus":"update"},{"name":"Harry",...,"_rdstatus":"add"}]
+                        //update anyway, so add "update tags" at the root of object "destination"
+                        //add root property "_changeset": [{"_id":1,"name":"Joe"...,"_rdstatus":"update"},{"name":"Harry",...,"_rdstatus":"add"}]
 
-                        }
+                        #region not used?
+                        //var token_equal = (Destination as JObject).SelectToken("");
+                        //if (token_equal != null)
+                        //{
+                        //    //Destination operation
+
+
+                        //}
+                        #endregion
+
+                        var changerow = new JObject(mp.Where(x => ((JArray)Config["destination"]["fields"]["otherfieldsname"]).Values<string>().Contains(((JProperty)x).Name)));
+                        changerow.Add("_rdstatus", new JValue("update"));
+                        var changeset = new JArray(changerow);
+                        (Destination as JObject).Add("_changeset", changeset);
+
                     }
+                    //not existing
                     else
                     {
-                        //Destination operation
+                        //operate at root of object "destination"
+                        //add root property "_changeset": [{"id":1,"name":"Joe"...,"_rdstatus":"update"},{"name":"Harry",...,"_rdstatus":"add"}]
+
+                        var changerow = new JObject(mp.Where(x => ((JArray)Config["destination"]["fields"]["otherfieldsname"]).Values<string>().Contains(((JProperty)x).Name)));
+                        changerow.Add("_rdstatus", new JValue("add"));
+                        var changeset = new JArray(changerow);
+                        (Destination as JObject).Add("_changeset", changeset);
 
                     }
 
                 }
+
+                #region not used
+                //else
+                //{
+                //    if (typeof(D) == typeof(DataSet))
+                //    {
+                //        if (typeof(S) == typeof(DataSet))
+                //        {
+
+                //        }
+                //        else if (typeof(S) == typeof(JObject))
+                //        {
+
+                //        }
+                //    }
+                //    else if (typeof(D) == typeof(JObject))
+                //    {
+                //        if (typeof(S) == typeof(DataSet))
+                //        {
+
+                //        }
+                //        else if (typeof(S) == typeof(JObject))
+                //        {
+
+                //        }
+                //    }
+                //}
+                #endregion
+
             }
+            // not implemented yet!
             else
             {
-                if (typeof(D) == typeof(DataSet))
-                {
-                    if (typeof(S) == typeof(DataSet))
-                    {
-
-                    }
-                    else if (typeof(S) == typeof(JObject))
-                    {
-
-                    }
-                }
-                else if (typeof(D) == typeof(JObject))
-                {
-                    if (typeof(S) == typeof(DataSet))
-                    {
-
-                    }
-                    else if (typeof(S) == typeof(JObject))
-                    {
-
-                    }
-                }
+                throw new Exception("");
             }
 
         }
@@ -247,7 +331,6 @@ namespace SimplyCastSync.CompareEngine
             int total = destinationq.UpdateData(Destination, null);
 
             // add log
-
 
             #region temperory
             //if (typeof(D) == typeof(JObject))

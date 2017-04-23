@@ -47,10 +47,12 @@
   <ItemGroup>
     <Compile Include="CompareEngine\CompareEngine.cs" />
     <Compile Include="CompareEngine\ComparerBuilder.cs" />
+    <Compile Include="CompareEngine\Strategy\Attributes\StrategyValidation.cs" />
     <Compile Include="CompareEngine\Strategy\Attributes\QueryStringProvider.cs" />
     <Compile Include="CompareEngine\Strategy\ISyncStrategy.cs" />
     <Compile Include="CompareEngine\Strategy\StrategySyncProvider.cs" />
-    <Compile Include="CompareEngine\Strategy\Utility\QueryString.cs" />
+    <Compile Include="CompareEngine\Strategy\Utility\JsonPathResolver.cs" />
+    <Compile Include="CompareEngine\Strategy\Utility\QueryStringResolver.cs" />
     <Compile Include="Config\ConfigRepository.cs" />
     <Compile Include="CompareEngine\FieldOperation\JsonFieldEquatable.cs" />
     <Compile Include="DBAcess\QueryBuilder.cs" />
@@ -69,7 +71,9 @@
     <Compile Include="PubLib\Log\LogExportAsync.cs" />
     <Compile Include="PubLib\Log\LogMgr.cs" />
     <Compile Include="Runtime\EngineRuntime.cs" />
+    <Compile Include="Runtime\IEngine.cs" />
     <Compile Include="Runtime\RuntimeTimer.cs" />
+    <Compile Include="SimplyCast_Sunix\Comparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="JsonTemplate\simplycast_emptycontacts.json">

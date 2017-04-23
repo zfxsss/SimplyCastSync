@@ -24,14 +24,11 @@
           "otherfieldsname": [ "EMAIL", "POSTCODE" ],
           "othernametag": "name",
           "othervaluetag": "value",
-          "existingjsonpath": "$.contacts[?(@..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##keynametag##=='???' && @..##keyvaluetag##=='***')]",
-          "equaljsonpath": "$.contacts[?(@..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##keynametag##=='???' && @..##keyvaluetag##=='***' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###' && @..##othernametag##=='%%%' && @..##othervaluetag##=='###')]",
-          //"querystring": "contactmanager/contacts?query=`1` = \"{1}\"",
-          //"querystring": "contactmanager/contacts?query=`23` = \"zhefeng_xu@hotmail.com\" AND `1` = \"hi\""
-          "updatestring": ""
+          "existingjsonpath": "$.contacts[0].id"
         },
-        "querystring": "contactmanager/contacts?query=`1` = \"{1}\""
-        //"querystring": "contactmanager/contacts?query=`23` = \"{1}\" AND `1` = \"{20}\""
+        "querystring": "contactmanager/contacts?query=`1` = \"{1}\"",
+        "updatestring": "",
+        "addstring": ""
       },
       "syncstrategy": "DataSetToSimplyCastAPI"
     }

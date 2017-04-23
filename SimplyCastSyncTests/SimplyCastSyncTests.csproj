@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CompareEngine\Strategy\StrategySyncProviderTests.cs" />
+    <Compile Include="CompareEngine\Strategy\Utility\QueryStringTests.cs" />
     <Compile Include="DBAcess\FoxproDataQueryTests.cs" />
     <Compile Include="DBAcess\SimplyCastWebApiQueryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,14 +13,17 @@ namespace SimplyCastSync.Runtime
     /// <summary>
     /// 
     /// </summary>
-    public class EngineRuntime
+    public class EngineRuntime : IEngine
     {
-        private static EngineRuntime runtime;
+        /// <summary>
+        /// 
+        /// </summary>
+        private static IEngine runtime;
 
         /// <summary>
         /// 
         /// </summary>
-        public static EngineRuntime Runtime
+        public static IEngine Runtime
         {
             get
             {

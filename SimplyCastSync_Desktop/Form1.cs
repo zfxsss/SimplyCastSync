@@ -12,16 +12,25 @@ using SimplyCastSync.CompareEngine;
 using static SimplyCastSync.Config.ConfigRepository;
 using Newtonsoft.Json.Linq;
 using static SimplyCastSync.Runtime.EngineRuntime;
+using SimplyCastSync.SimplyCast_Sunix;
 
 namespace SimplyCastSync_Desktop
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdconfig_btn_Click(object sender, EventArgs e)
         {
             Runtime.Run(CompareEngine.Sync);
@@ -44,6 +53,21 @@ namespace SimplyCastSync_Desktop
 
 
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void sync_btn_Click(object sender, EventArgs e)
+        {
+            CompareEngine.Sync();
+        }
+
+        private void syncsimple_btn_Click(object sender, EventArgs e)
+        {
+            Comparer.Sync();
         }
     }
 }

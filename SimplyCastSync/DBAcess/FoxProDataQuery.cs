@@ -4,6 +4,9 @@ using System.Data.OleDb;
 
 namespace SimplyCastSync.DBAccess
 {
+    /// <summary>
+    /// use OLEDB Driver to access Foxpro tables
+    /// </summary>
     public class FoxproDataQuery : IQuery<DataSet>, IDisposable
     {
         /// <summary>

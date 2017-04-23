@@ -23,7 +23,8 @@ namespace SimplyCastSync.Config
                 {
                     if (_content == null)
                     {
-                        _content = JObject.Parse(File.ReadAllText("process_config.json"));
+                        //_content = JObject.Parse(File.ReadAllText("process_config.json"));
+                        _content = JObject.Parse(File.ReadAllText("process_config_simple.json"));
                     }
                     return _content;
                 }
