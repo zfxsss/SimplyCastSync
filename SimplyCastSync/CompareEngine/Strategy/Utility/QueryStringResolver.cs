@@ -49,6 +49,10 @@ namespace SimplyCastSync.CompareEngine.Strategy.Utility
                 {
                     replacement = ((JProperty)array[i]).Value.ToString();
                 }
+                else if (array[i].GetType() == typeof(JValue))
+                {
+                    replacement = ((JValue)array[i]).ToString();
+                }
 
                 template = template.Replace(item.Value, replacement);
                 i++;

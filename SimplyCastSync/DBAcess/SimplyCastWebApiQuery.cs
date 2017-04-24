@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SimplyCastSync.CompareEngine.Strategy.Utility;
 using System;
 using System.IO;
 using System.Net.Http;
@@ -92,12 +93,55 @@ namespace SimplyCastSync.DBAccess
         /// <param name="ds"></param>
         /// <param name="extras"></param>
         /// <returns></returns>
-        public int UpdateData(JObject ds, params string[] extras)
+        public void UpdateData(JObject ds, params string[] extras)
         {
             //need extras to thell httpclient the exact address of update
             //and this method has the knowledge of msg body format
-            return 0;
-        }
+
+            //opertaion of HttpClient
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var changeset = ds["_changeset"];
+
+                    if (changeset != null)
+                    {
+                        foreach (var rd in changeset)
+                        {
+                            var querystring = "";
+
+                            if (rd["_rdstatus"].ToString() == "update")
+                            {
+                                ((JObject)rd).Remove("_rdstatus");
+                                querystring = QueryStringResolver.GetQueryString("CommonRegex", extras[0], new JValue[] { (JValue)rd["_id"] });
+                                ((JObject)rd).Remove("_id");
+                            }
+                            else if (rd["_rdstatus"].ToString() == "add")
+                            {
+                                ((JObject)rd).Remove("_rdstatus");
+                                querystring = extras[1];
+
+                            }
+
+                            AddMetaData(client, "update");
+                            var updatetask = client.PostAsync(querystring, new StringContent(((JObject)rd).ToString(), Encoding.UTF8, "application/json"));
+                            updatetask.Wait();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }//end of using
+
+        }//end of method
+
+
+
+
 
         /// <summary>
         /// 

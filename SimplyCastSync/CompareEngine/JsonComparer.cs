@@ -328,7 +328,7 @@ namespace SimplyCastSync.CompareEngine
         public void Commit()
         {
             // need to provide remote url in the second parameter
-            int total = destinationq.UpdateData(Destination, null);
+            destinationq.UpdateData(Destination, null);
 
             // add log
 

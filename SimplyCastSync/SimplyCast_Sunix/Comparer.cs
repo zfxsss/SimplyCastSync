@@ -104,16 +104,23 @@ namespace SimplyCastSync.SimplyCast_Sunix
                 }
 
                 //resolve jsonpath
+                //var token_existing = JObject.Parse("{'contacts': [{'id': '100'}]}").SelectToken("$.contacts[0].id");
                 var token_existing = destination.SelectToken(config["destination"]["fields"]["existingjsonpath"].ToString());
+
+                string updatestr = config["destination"]["updatestring"].ToString();
+                string addstr = config["destination"]["addstring"].ToString();
 
                 //existing
                 if (token_existing != null)
                 {
                     var changerow = new JObject(keyparams.Union(valueparams).ToArray().Where(x => ((JArray)config["destination"]["fields"]["otherfieldsname"]).Values<string>().Contains(((JProperty)x).Name)));
                     changerow.Add("_rdstatus", new JValue("update"));
+                    changerow.Add("_id", (JValue)token_existing);
                     var changeset = new JArray(changerow);
                     destination.Add("_changeset", changeset);
 
+                    // resolve it
+                    //updatestr = QueryStringResolver.GetQueryString("CommonRegex", updatestr, new JValue[] { (JValue)token_existing });
                 }
                 //not existing
                 else
@@ -122,12 +129,9 @@ namespace SimplyCastSync.SimplyCast_Sunix
                     changerow.Add("_rdstatus", new JValue("add"));
                     var changeset = new JArray(changerow);
                     destination.Add("_changeset", changeset);
-
                 }
 
-                //comparer.Commit();
-
-                int total = destquery.UpdateData(destination, null);
+                destquery.UpdateData(destination, new string[] { updatestr, addstr });
 
             }
 
